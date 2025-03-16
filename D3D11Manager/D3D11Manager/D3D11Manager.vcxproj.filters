@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="소스 파일\DeviceContext">
+      <UniqueIdentifier>{4f9399c1-7e2a-4d07-be97-0cc95e217b17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\DeviceContext">
+      <UniqueIdentifier>{1f017587-3395-4003-9ac2-ac88595e6a9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Buffer">
+      <UniqueIdentifier>{fb2d4012-5779-40c1-a8ed-c7e180eab5b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Buffer">
+      <UniqueIdentifier>{0c2cfc6d-4522-4d4f-9e97-0fdf13f8b80c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Texture">
+      <UniqueIdentifier>{cd774334-1060-46ee-b44a-b8b09d163f20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Texture">
+      <UniqueIdentifier>{791ea405-9287-43ef-b658-fc63b14b4f58}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GEngine.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseApp.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="D3D11DllHelper.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="DeferredContext.h">
+      <Filter>헤더 파일\DeviceContext</Filter>
+    </ClInclude>
+    <ClInclude Include="ABuffer.h">
+      <Filter>헤더 파일\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="AUploadableBuffer.h">
+      <Filter>헤더 파일\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="ConstantBuffer.h">
+      <Filter>헤더 파일\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicBuffer.h">
+      <Filter>헤더 파일\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="StructuredBuffer.h">
+      <Filter>헤더 파일\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureUtilities.h">
+      <Filter>헤더 파일\Texture</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="GEngine.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseApp.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="DeferredContext.cpp">
+      <Filter>소스 파일\DeviceContext</Filter>
+    </ClCompile>
+    <ClCompile Include="ABuffer.cpp">
+      <Filter>소스 파일\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="AUploadableBuffer.cpp">
+      <Filter>소스 파일\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="ConstantBuffer.cpp">
+      <Filter>소스 파일\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicBuffer.cpp">
+      <Filter>소스 파일\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="StructuredBuffer.cpp">
+      <Filter>소스 파일\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureUtilities.cpp">
+      <Filter>소스 파일\Texture</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
