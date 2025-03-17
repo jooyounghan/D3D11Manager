@@ -4,7 +4,7 @@
 using namespace std;
 using namespace D3D11;
 
-CDynamicBuffer::CDynamicBuffer(const UINT& elementSize, const UINT& arrayCount, const void* cpuData) noexcept
+CDynamicBuffer::CDynamicBuffer(const UINT& elementSize, const UINT& arrayCount, const void* cpuData)
 	: AUploadableBuffer(elementSize, arrayCount, cpuData)
 {
 }

@@ -46,14 +46,12 @@ namespace D3D11
 
 		static void CreateDepthStencilView(
 			ID3D11Device* device,
-			ID3D11DeviceContext* deviceContext,
 			ID3D11Resource* resource,
 			ID3D11DepthStencilView** dsv
 		);
 
 		static void CreateUnorderedAccessView(
 			ID3D11Device* device,
-			ID3D11DeviceContext* deviceContext,
 			ID3D11Resource* resource,
 			ID3D11UnorderedAccessView** uav
 		);
@@ -73,10 +71,11 @@ namespace D3D11
 		) noexcept;
 		static D3D11_UNORDERED_ACCESS_VIEW_DESC GetUnorderedAccessViewDesc(
 			const D3D11_TEXTURE2D_DESC& texture2dDesc
-		) noexcept;
+		);
 		static DXGI_FORMAT GetUnorderedAccessViewFormatFromTextureFormat(
 			const DXGI_FORMAT& textureFormat
 		) noexcept;
 	};
 }
+
 #endif

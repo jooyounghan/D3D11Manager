@@ -149,27 +149,41 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="ABuffer.h" />
+    <ClInclude Include="AShader.h" />
     <ClInclude Include="AUploadableBuffer.h" />
     <ClInclude Include="BaseApp.h" />
+    <ClInclude Include="ComputeShader.h" />
     <ClInclude Include="ConstantBuffer.h" />
     <ClInclude Include="D3D11DllHelper.h" />
     <ClInclude Include="DeferredContext.h" />
+    <ClInclude Include="DomainShader.h" />
     <ClInclude Include="DynamicBuffer.h" />
     <ClInclude Include="GEngine.h" />
+    <ClInclude Include="GeometryShader.h" />
+    <ClInclude Include="HullShader.h" />
+    <ClInclude Include="PixelShader.h" />
     <ClInclude Include="StructuredBuffer.h" />
     <ClInclude Include="TextureUtilities.h" />
+    <ClInclude Include="VertexShader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ABuffer.cpp" />
+    <ClCompile Include="AShader.cpp" />
     <ClCompile Include="AUploadableBuffer.cpp" />
     <ClCompile Include="BaseApp.cpp" />
+    <ClCompile Include="ComputeShader.cpp" />
     <ClCompile Include="ConstantBuffer.cpp" />
     <ClCompile Include="DeferredContext.cpp" />
+    <ClCompile Include="DomainShader.cpp" />
     <ClCompile Include="DynamicBuffer.cpp" />
     <ClCompile Include="GEngine.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="GeometryShader.cpp" />
+    <ClCompile Include="HullShader.cpp" />
+    <ClCompile Include="PixelShader.cpp" />
     <ClCompile Include="StructuredBuffer.cpp" />
     <ClCompile Include="TextureUtilities.cpp" />
+    <ClCompile Include="VertexShader.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -8,12 +8,15 @@
 #include <wrl/client.h>
 #include <d3d11.h>
 
+
+template class D3D11MANAGER_API Microsoft::WRL::ComPtr<ID3D11Buffer>;
+
 namespace D3D11
 {
 	class D3D11MANAGER_API ABuffer
 	{
 	public:
-		ABuffer(const UINT& elementSize, const UINT& arrayCount, const void* cpuDataIn) noexcept;
+		ABuffer(const UINT& elementSize, const UINT& arrayCount, const void* cpuDataIn);
 		virtual ~ABuffer() { m_buffer.Reset(); };
 
 	protected:
@@ -32,5 +35,6 @@ namespace D3D11
 		virtual void InitializeBuffer(ID3D11Device* const device) = 0;
 	};
 }
+
 #endif
 

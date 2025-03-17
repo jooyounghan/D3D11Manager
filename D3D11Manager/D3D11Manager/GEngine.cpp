@@ -37,7 +37,7 @@ void GEngine::GEngine::InitEngine(
     swapChainDesc.BufferDesc.Format = backBufferFormat;
     swapChainDesc.SampleDesc.Count = 1;
     swapChainDesc.SampleDesc.Quality = 0;
-    swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
+    swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT | DXGI_USAGE_UNORDERED_ACCESS;
     swapChainDesc.BufferCount = backBufferCount;
     swapChainDesc.OutputWindow = wndHandle;
     swapChainDesc.Windowed = true;

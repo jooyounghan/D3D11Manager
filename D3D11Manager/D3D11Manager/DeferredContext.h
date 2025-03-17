@@ -8,6 +8,8 @@
 #include <d3d11.h>
 #include <wrl/client.h>
 
+template class D3D11MANAGER_API Microsoft::WRL::ComPtr<ID3D11DeviceContext>;
+
 namespace D3D11
 {
 	class D3D11MANAGER_API CDeferredContext

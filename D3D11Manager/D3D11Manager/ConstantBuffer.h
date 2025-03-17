@@ -9,12 +9,13 @@ namespace D3D11
 {
 	class D3D11MANAGER_API CConstantBuffer : public ABuffer
 	{
+	public:
 		CConstantBuffer(
 			const UINT& elementSize, const UINT& arrayCount,
 			const void* cpuDataIn,
 			const D3D11_BIND_FLAG& bindFlag = D3D11_BIND_CONSTANT_BUFFER,
 			const D3D11_USAGE& usage = D3D11_USAGE_IMMUTABLE
-		) noexcept;
+		);
 		~CConstantBuffer() override = default;
 
 	protected:

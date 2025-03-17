@@ -5,6 +5,8 @@
 
 #include "AUploadableBuffer.h"
 
+template class D3D11MANAGER_API Microsoft::WRL::ComPtr<ID3D11ShaderResourceView>;
+
 namespace D3D11
 {
 	class D3D11MANAGER_API CStructuredBuffer : public AUploadableBuffer
@@ -14,7 +16,7 @@ namespace D3D11
 			const UINT& elementSize, 
 			const UINT& arrayCount, 
 			const void* cpuData
-		) noexcept;
+		);
 		~CStructuredBuffer() override = default;
 
 	protected:
@@ -28,4 +30,5 @@ namespace D3D11
 
 	};
 }
+
 #endif

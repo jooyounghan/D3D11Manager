@@ -7,6 +7,8 @@
 #include <Windows.h>
 #include <functional>
 
+template class D3D11MANAGER_API std::function<void(const UINT& width, const UINT& height)>;
+
 namespace D3D11
 {
 	using WndSizeUpdateHandler = std::function<void(const UINT& width, const UINT& height)>;

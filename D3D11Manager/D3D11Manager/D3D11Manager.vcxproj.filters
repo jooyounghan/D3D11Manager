@@ -31,6 +31,12 @@
     <Filter Include="소스 파일\Texture">
       <UniqueIdentifier>{791ea405-9287-43ef-b658-fc63b14b4f58}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Shaders">
+      <UniqueIdentifier>{e4514bfb-71bb-4a41-8b1d-17abec58045a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Shader">
+      <UniqueIdentifier>{afa11b0b-2232-46d4-b445-f57701bafcf6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GEngine.h">
@@ -63,6 +69,27 @@
     <ClInclude Include="TextureUtilities.h">
       <Filter>헤더 파일\Texture</Filter>
     </ClInclude>
+    <ClInclude Include="AShader.h">
+      <Filter>헤더 파일\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="ComputeShader.h">
+      <Filter>헤더 파일\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="DomainShader.h">
+      <Filter>헤더 파일\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="GeometryShader.h">
+      <Filter>헤더 파일\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="HullShader.h">
+      <Filter>헤더 파일\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="PixelShader.h">
+      <Filter>헤더 파일\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexShader.h">
+      <Filter>헤더 파일\Shader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -94,6 +121,27 @@
     </ClCompile>
     <ClCompile Include="TextureUtilities.cpp">
       <Filter>소스 파일\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="AShader.cpp">
+      <Filter>소스 파일\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="DomainShader.cpp">
+      <Filter>소스 파일\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="GeometryShader.cpp">
+      <Filter>소스 파일\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="HullShader.cpp">
+      <Filter>소스 파일\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="PixelShader.cpp">
+      <Filter>소스 파일\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexShader.cpp">
+      <Filter>소스 파일\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="ComputeShader.cpp">
+      <Filter>소스 파일\Shaders</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

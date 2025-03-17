@@ -83,7 +83,6 @@ void TextureUtilities::CreateShaderResourceView(
 
 void D3D11::TextureUtilities::CreateDepthStencilView(
 	ID3D11Device* device, 
-	ID3D11DeviceContext* deviceContext, 
 	ID3D11Resource* resource,
 	ID3D11DepthStencilView** dsv
 )
@@ -104,7 +103,6 @@ void D3D11::TextureUtilities::CreateDepthStencilView(
 
 void D3D11::TextureUtilities::CreateUnorderedAccessView(
 	ID3D11Device* device, 
-	ID3D11DeviceContext* deviceContext, 
 	ID3D11Resource* resource, 
 	ID3D11UnorderedAccessView** uav
 )
@@ -246,7 +244,7 @@ DXGI_FORMAT TextureUtilities::GetDepthStencilViewFormatFromTextureFormat(const D
 	return textureFormat;
 }
 
-D3D11_UNORDERED_ACCESS_VIEW_DESC TextureUtilities::GetUnorderedAccessViewDesc(const D3D11_TEXTURE2D_DESC& texture2dDesc) noexcept
+D3D11_UNORDERED_ACCESS_VIEW_DESC TextureUtilities::GetUnorderedAccessViewDesc(const D3D11_TEXTURE2D_DESC& texture2dDesc)
 {
 	D3D11_UNORDERED_ACCESS_VIEW_DESC uavDesc;
 	ZeroMemory(&uavDesc, sizeof(uavDesc));

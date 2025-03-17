@@ -4,7 +4,7 @@
 using namespace std;
 using namespace D3D11;
 
-CStructuredBuffer::CStructuredBuffer(const UINT& elementSize, const UINT& arrayCount, const void* cpuData) noexcept
+CStructuredBuffer::CStructuredBuffer(const UINT& elementSize, const UINT& arrayCount, const void* cpuData)
 	: AUploadableBuffer(elementSize, arrayCount, cpuData)
 {
 }

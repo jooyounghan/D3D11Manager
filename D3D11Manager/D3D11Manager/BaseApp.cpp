@@ -75,6 +75,7 @@ LRESULT __stdcall CBaseApp::AppProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM l
 		DragAcceptFiles(hWnd, TRUE);
 		break;
 	}
+	AppProcImpl(hWnd, msg, wParam, lParam);
 	return ::DefWindowProc(hWnd, msg, wParam, lParam);
 }
 

@@ -9,7 +9,7 @@ CConstantBuffer::CConstantBuffer(
 	const void* cpuDataIn,
 	const D3D11_BIND_FLAG& bindFlag,
 	const D3D11_USAGE& usage
-) noexcept
+)
 	: ABuffer(elementSize, arrayCount, cpuDataIn), m_bindFlag(bindFlag), m_usage(usage)
 {
 

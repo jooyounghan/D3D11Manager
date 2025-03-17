@@ -15,6 +15,12 @@ constexpr UINT				CreateDeviceFlags = D3D11_CREATE_DEVICE_DEBUG;
 constexpr UINT				CreateDeviceFlags = NULL;
 #endif
 
+template class D3D11MANAGER_API Microsoft::WRL::ComPtr<ID3D11Device>;
+template class D3D11MANAGER_API Microsoft::WRL::ComPtr<ID3D11DeviceContext>;
+template class D3D11MANAGER_API Microsoft::WRL::ComPtr<IDXGISwapChain>;
+template class D3D11MANAGER_API Microsoft::WRL::ComPtr<ID3D11Texture2D>;
+template class D3D11MANAGER_API Microsoft::WRL::ComPtr<ID3D11RenderTargetView>;
+
 namespace D3D11
 {
     class D3D11MANAGER_API GEngine
@@ -80,5 +86,6 @@ namespace D3D11
         void InitBackBuffer();
     };
 }
+
 
 #endif
