@@ -9,11 +9,11 @@ template class D3D11MANAGER_API Microsoft::WRL::ComPtr<ID3D11PixelShader>;
 
 namespace D3D11
 {
-	class D3D11MANAGER_API PixelShader : public AShader
+	class D3D11MANAGER_API CPixelShader : public AShader
 	{
 	public:
-		PixelShader() = default;
-		virtual ~PixelShader() = default;
+		CPixelShader() = default;
+		~CPixelShader() override = default;
 
 
 	protected:

@@ -9,11 +9,11 @@ template class D3D11MANAGER_API Microsoft::WRL::ComPtr<ID3D11ComputeShader>;
 
 namespace D3D11
 {
-	class D3D11MANAGER_API ComputeShader : public AShader
+	class D3D11MANAGER_API CComputeShader : public AShader
 	{
 	public:
-		ComputeShader() = default;
-		virtual ~ComputeShader() = default;
+		CComputeShader() = default;
+		~CComputeShader() override = default;
 
 
 	protected:

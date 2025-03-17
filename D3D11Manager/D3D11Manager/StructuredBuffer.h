@@ -6,6 +6,7 @@
 #include "AUploadableBuffer.h"
 
 template class D3D11MANAGER_API Microsoft::WRL::ComPtr<ID3D11ShaderResourceView>;
+template class D3D11MANAGER_API Microsoft::WRL::ComPtr<ID3D11UnorderedAccessView>;
 
 namespace D3D11
 {
@@ -21,9 +22,11 @@ namespace D3D11
 
 	protected:
 		Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_structuredSRV;
+		Microsoft::WRL::ComPtr<ID3D11UnorderedAccessView> m_structuredUAV;
 
 	public:
 		ID3D11ShaderResourceView* const GetSRV() const { return m_structuredSRV.Get(); }
+		ID3D11UnorderedAccessView* const GetUAV() const { return m_structuredUAV.Get(); }
 
 	public:
 		virtual void InitializeBuffer(ID3D11Device* const device) override;

@@ -17,14 +17,13 @@ void CStructuredBuffer::InitializeBuffer(ID3D11Device* const device)
 	ZeroMemory(&bufferDesc, sizeof(bufferDesc));
 
 	bufferDesc.ByteWidth = m_elementSize * m_arrayCount;
-	bufferDesc.Usage = D3D11_USAGE_DYNAMIC;
-	bufferDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
-	bufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	bufferDesc.Usage = D3D11_USAGE_DEFAULT;
+	bufferDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE | D3D11_BIND_UNORDERED_ACCESS;
+	bufferDesc.CPUAccessFlags = NULL;
 	bufferDesc.MiscFlags = D3D11_RESOURCE_MISC_BUFFER_STRUCTURED;
 	bufferDesc.StructureByteStride = m_elementSize;
 	HRESULT hResult = device->CreateBuffer(&bufferDesc, &initialData, m_buffer.GetAddressOf());
 	if (FAILED(hResult)) throw exception("CreateBuffer For StructuredBuffer Failed");
-
 
 	D3D11_SHADER_RESOURCE_VIEW_DESC srvDesc;
 	ZeroMemory(&srvDesc, sizeof(srvDesc));
@@ -34,4 +33,14 @@ void CStructuredBuffer::InitializeBuffer(ID3D11Device* const device)
 	srvDesc.BufferEx.NumElements = m_arrayCount;
 	hResult = device->CreateShaderResourceView(m_buffer.Get(), &srvDesc, m_structuredSRV.GetAddressOf());
 	if (FAILED(hResult)) throw exception("CreateShaderResourceView For StructuredBuffer Failed");
+
+	D3D11_UNORDERED_ACCESS_VIEW_DESC uavDesc;
+	ZeroMemory(&uavDesc, sizeof(uavDesc));
+
+	uavDesc.Format = DXGI_FORMAT_UNKNOWN;
+	uavDesc.ViewDimension = D3D11_UAV_DIMENSION_BUFFER;
+	uavDesc.Buffer.NumElements = m_arrayCount;
+	hResult = device->CreateUnorderedAccessView(m_buffer.Get(), &uavDesc, m_structuredUAV.GetAddressOf());
+	if (FAILED(hResult)) throw exception("CreateUnorderedAccessView For StructuredBuffer Failed");
+
 }

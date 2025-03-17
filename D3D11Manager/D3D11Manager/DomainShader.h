@@ -9,11 +9,11 @@ template class D3D11MANAGER_API Microsoft::WRL::ComPtr<ID3D11DomainShader>;
 
 namespace D3D11
 {
-	class D3D11MANAGER_API DomainShader : public AShader
+	class D3D11MANAGER_API CDomainShader : public AShader
 	{
 	public:
-		DomainShader() = default;
-		virtual ~DomainShader() = default;
+		CDomainShader() = default;
+		~CDomainShader() override = default;
 
 
 	protected:

@@ -9,11 +9,11 @@ template class D3D11MANAGER_API Microsoft::WRL::ComPtr<ID3D11GeometryShader>;
 
 namespace D3D11
 {
-	class D3D11MANAGER_API GeometryShader : public AShader
+	class D3D11MANAGER_API CGeometryShader : public AShader
 	{
 	public:
-		GeometryShader() = default;
-		virtual ~GeometryShader() = default;
+		CGeometryShader() = default;
+		~CGeometryShader() override = default;
 
 
 	protected:

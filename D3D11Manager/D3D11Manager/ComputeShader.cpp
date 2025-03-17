@@ -3,7 +3,7 @@
 using namespace std;
 using namespace D3D11;
 
-void ComputeShader::CreateShaderImpl(ID3D11Device* device)
+void CComputeShader::CreateShaderImpl(ID3D11Device* device)
 {
 	HRESULT hResult = device->CreateComputeShader(
 		m_shaderByteCode->GetBufferPointer(),
@@ -13,17 +13,17 @@ void ComputeShader::CreateShaderImpl(ID3D11Device* device)
 	if (FAILED(hResult)) throw exception("CreateComputeShader Failed");
 }
 
-void ComputeShader::SetShader(ID3D11DeviceContext* deviceContext) const noexcept
+void CComputeShader::SetShader(ID3D11DeviceContext* deviceContext) const noexcept
 {
 	deviceContext->CSSetShader(m_computeShader.Get(), NULL, NULL);
 }
 
-void ComputeShader::ResetShader(ID3D11DeviceContext* deviceContext) const noexcept
+void CComputeShader::ResetShader(ID3D11DeviceContext* deviceContext) const noexcept
 {
 	deviceContext->CSSetShader(nullptr, NULL, NULL);
 }
 
-void ComputeShader::SetSamplerState(
+void CComputeShader::SetSamplerState(
 	ID3D11DeviceContext* deviceContext, 
 	const vector<ID3D11SamplerState*>& samplerStates
 ) noexcept
@@ -32,7 +32,7 @@ void ComputeShader::SetSamplerState(
 	deviceContext->CSSetSamplers(0, static_cast<UINT>(samplerStates.size()), samplerStates.data());
 }
 
-void ComputeShader::ResetSamplerState(ID3D11DeviceContext* deviceContext) const noexcept
+void CComputeShader::ResetSamplerState(ID3D11DeviceContext* deviceContext) const noexcept
 {
 	vector<ID3D11SamplerState*> resetSamplerState;
 	resetSamplerState.resize(m_samplerStateCount, nullptr);

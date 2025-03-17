@@ -3,7 +3,7 @@
 using namespace std;
 using namespace D3D11;
 
-void DomainShader::CreateShaderImpl(ID3D11Device* device)
+void CDomainShader::CreateShaderImpl(ID3D11Device* device)
 {
 	HRESULT hResult = device->CreateDomainShader(
 		m_shaderByteCode->GetBufferPointer(),
@@ -13,17 +13,17 @@ void DomainShader::CreateShaderImpl(ID3D11Device* device)
 	if (FAILED(hResult)) throw exception("CreateDomainShader Failed");
 }
 
-void DomainShader::SetShader(ID3D11DeviceContext* deviceContext) const noexcept
+void CDomainShader::SetShader(ID3D11DeviceContext* deviceContext) const noexcept
 {
 	deviceContext->DSSetShader(m_domainShader.Get(), NULL, NULL);
 }
 
-void DomainShader::ResetShader(ID3D11DeviceContext* deviceContext) const noexcept
+void CDomainShader::ResetShader(ID3D11DeviceContext* deviceContext) const noexcept
 {
 	deviceContext->DSSetShader(nullptr, NULL, NULL);
 }
 
-void DomainShader::SetSamplerState(
+void CDomainShader::SetSamplerState(
 	ID3D11DeviceContext* deviceContext, 
 	const vector<ID3D11SamplerState*>& samplerStates
 ) noexcept
@@ -32,7 +32,7 @@ void DomainShader::SetSamplerState(
 	deviceContext->DSSetSamplers(0, static_cast<UINT>(samplerStates.size()), samplerStates.data());
 }
 
-void DomainShader::ResetSamplerState(ID3D11DeviceContext* deviceContext) const noexcept
+void CDomainShader::ResetSamplerState(ID3D11DeviceContext* deviceContext) const noexcept
 {
 	vector<ID3D11SamplerState*> resetSamplerState;
 	resetSamplerState.resize(m_samplerStateCount, nullptr);

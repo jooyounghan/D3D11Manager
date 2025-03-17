@@ -3,7 +3,7 @@
 using namespace std;
 using namespace D3D11;
 
-void HullShader::CreateShaderImpl(ID3D11Device* device)
+void CHullShader::CreateShaderImpl(ID3D11Device* device)
 {
 	HRESULT hResult = device->CreateHullShader(
 		m_shaderByteCode->GetBufferPointer(),
@@ -13,17 +13,17 @@ void HullShader::CreateShaderImpl(ID3D11Device* device)
 	if (FAILED(hResult)) throw exception("CreateHullShader Failed");
 }
 
-void HullShader::SetShader(ID3D11DeviceContext* deviceContext) const noexcept
+void CHullShader::SetShader(ID3D11DeviceContext* deviceContext) const noexcept
 {
 	deviceContext->HSSetShader(m_hullShader.Get(), NULL, NULL);
 }
 
-void HullShader::ResetShader(ID3D11DeviceContext* deviceContext) const noexcept
+void CHullShader::ResetShader(ID3D11DeviceContext* deviceContext) const noexcept
 {
 	deviceContext->HSSetShader(nullptr, NULL, NULL);
 }
 
-void HullShader::SetSamplerState(
+void CHullShader::SetSamplerState(
 	ID3D11DeviceContext* deviceContext, 
 	const vector<ID3D11SamplerState*>& samplerStates
 ) noexcept
@@ -32,7 +32,7 @@ void HullShader::SetSamplerState(
 	deviceContext->HSSetSamplers(0, static_cast<UINT>(samplerStates.size()), samplerStates.data());
 }
 
-void HullShader::ResetSamplerState(ID3D11DeviceContext* deviceContext) const noexcept
+void CHullShader::ResetSamplerState(ID3D11DeviceContext* deviceContext) const noexcept
 {
 	vector<ID3D11SamplerState*> resetSamplerState;
 	resetSamplerState.resize(m_samplerStateCount, nullptr);

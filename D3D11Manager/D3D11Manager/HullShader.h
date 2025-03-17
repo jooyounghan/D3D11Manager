@@ -9,11 +9,11 @@ template class D3D11MANAGER_API Microsoft::WRL::ComPtr<ID3D11HullShader>;
 
 namespace D3D11
 {
-	class D3D11MANAGER_API HullShader : public AShader
+	class D3D11MANAGER_API CHullShader : public AShader
 	{
 	public:
-		HullShader() = default;
-		virtual ~HullShader() = default;
+		CHullShader() = default;
+		~CHullShader() override = default;
 
 
 	protected:
