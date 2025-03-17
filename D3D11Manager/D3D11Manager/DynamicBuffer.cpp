@@ -1,5 +1,4 @@
 #include "DynamicBuffer.h"
-#include <exception>
 
 using namespace std;
 using namespace D3D11;
@@ -9,12 +8,8 @@ CDynamicBuffer::CDynamicBuffer(const UINT& elementSize, const UINT& arrayCount, 
 {
 }
 
-void CDynamicBuffer::InitializeBuffer(ID3D11Device* const device)
+D3D11_BUFFER_DESC CDynamicBuffer::CreateBufferDesc() noexcept
 {
-	AUploadableBuffer::InitializeBuffer(device);
-
-	D3D11_SUBRESOURCE_DATA initialData = GetSubResourceData();
-
 	D3D11_BUFFER_DESC bufferDesc;
 	ZeroMemory(&bufferDesc, sizeof(bufferDesc));
 
@@ -25,6 +20,5 @@ void CDynamicBuffer::InitializeBuffer(ID3D11Device* const device)
 	bufferDesc.MiscFlags = NULL;
 	bufferDesc.StructureByteStride = m_elementSize;
 
-	HRESULT hResult = device->CreateBuffer(&bufferDesc, &initialData, m_buffer.GetAddressOf());
-	if (FAILED(hResult)) throw exception("CreateBuffer For Dynamic Buffer Failed");
+	return bufferDesc;
 }

@@ -1,5 +1,4 @@
 #include "ConstantBuffer.h"
-#include <exception>
 
 using namespace std;
 using namespace D3D11;
@@ -14,10 +13,8 @@ CConstantBuffer::CConstantBuffer(
 {
 
 }
-void CConstantBuffer::InitializeBuffer(ID3D11Device* device)
+D3D11_BUFFER_DESC D3D11::CConstantBuffer::CreateBufferDesc() noexcept
 {
-	D3D11_SUBRESOURCE_DATA initialData = GetSubResourceData();
-
 	D3D11_BUFFER_DESC bufferDesc;
 	ZeroMemory(&bufferDesc, sizeof(bufferDesc));
 
@@ -27,7 +24,5 @@ void CConstantBuffer::InitializeBuffer(ID3D11Device* device)
 	bufferDesc.CPUAccessFlags = NULL;
 	bufferDesc.MiscFlags = NULL;
 	bufferDesc.StructureByteStride = 0;
-
-	HRESULT hResult = device->CreateBuffer(&bufferDesc, &initialData, m_buffer.GetAddressOf());
-	if (FAILED(hResult)) throw exception("CreateBuffer For ConstantBuffer Failed");
+	return bufferDesc;
 }

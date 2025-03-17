@@ -149,6 +149,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="ABuffer.h" />
+    <ClInclude Include="AppendBuffer.h" />
     <ClInclude Include="AShader.h" />
     <ClInclude Include="AUploadableBuffer.h" />
     <ClInclude Include="BaseApp.h" />
@@ -168,6 +169,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ABuffer.cpp" />
+    <ClCompile Include="AppendBuffer.cpp" />
     <ClCompile Include="AShader.cpp" />
     <ClCompile Include="AUploadableBuffer.cpp" />
     <ClCompile Include="BaseApp.cpp" />

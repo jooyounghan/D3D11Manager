@@ -90,6 +90,9 @@
     <ClInclude Include="VertexShader.h">
       <Filter>헤더 파일\Shader</Filter>
     </ClInclude>
+    <ClInclude Include="AppendBuffer.h">
+      <Filter>헤더 파일\Buffer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -142,6 +145,9 @@
     </ClCompile>
     <ClCompile Include="ComputeShader.cpp">
       <Filter>소스 파일\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="AppendBuffer.cpp">
+      <Filter>소스 파일\Buffer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

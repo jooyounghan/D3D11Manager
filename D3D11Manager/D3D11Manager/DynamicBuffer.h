@@ -18,7 +18,7 @@ namespace D3D11
 		~CDynamicBuffer() override = default;
 
 	public:
-		virtual void InitializeBuffer(ID3D11Device* const device) override;
+		virtual D3D11_BUFFER_DESC CreateBufferDesc() noexcept override;
 	};
 }
 

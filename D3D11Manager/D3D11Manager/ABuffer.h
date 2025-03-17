@@ -8,6 +8,7 @@
 #include <wrl/client.h>
 #include <d3d11.h>
 
+#include <exception>
 
 template class D3D11MANAGER_API Microsoft::WRL::ComPtr<ID3D11Buffer>;
 
@@ -32,7 +33,8 @@ namespace D3D11
 		inline ID3D11Buffer* GetBuffer() const noexcept { return m_buffer.Get(); }
 
 	public:
-		virtual void InitializeBuffer(ID3D11Device* const device) = 0;
+		virtual D3D11_BUFFER_DESC CreateBufferDesc() noexcept = 0;
+		virtual void InitializeBuffer(ID3D11Device* const device);
 	};
 }
 

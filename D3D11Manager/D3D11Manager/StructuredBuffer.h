@@ -25,12 +25,14 @@ namespace D3D11
 		Microsoft::WRL::ComPtr<ID3D11UnorderedAccessView> m_structuredUAV;
 
 	public:
-		ID3D11ShaderResourceView* const GetSRV() const { return m_structuredSRV.Get(); }
-		ID3D11UnorderedAccessView* const GetUAV() const { return m_structuredUAV.Get(); }
+		ID3D11ShaderResourceView* const GetSRV() const noexcept { return m_structuredSRV.Get(); }
+		ID3D11UnorderedAccessView* const GetUAV() const noexcept { return m_structuredUAV.Get(); }
 
 	public:
+		virtual D3D11_BUFFER_DESC CreateBufferDesc() noexcept override;
+		virtual D3D11_SHADER_RESOURCE_VIEW_DESC CreateShaderResourceViewDesc() noexcept;
+		virtual D3D11_UNORDERED_ACCESS_VIEW_DESC CreateUnorderedAccessViewDesc() noexcept;
 		virtual void InitializeBuffer(ID3D11Device* const device) override;
-
 	};
 }
 

@@ -1,7 +1,5 @@
 #include "AUploadableBuffer.h"
 
-#include <exception>
-
 using namespace std;
 using namespace D3D11;
 
@@ -12,6 +10,8 @@ AUploadableBuffer::AUploadableBuffer(const UINT& elementSize, const UINT& arrayC
 
 void D3D11::AUploadableBuffer::InitializeBuffer(ID3D11Device* const device)
 {
+	ABuffer::InitializeBuffer(device);
+
 	D3D11_SUBRESOURCE_DATA initialData = GetSubResourceData();
 
 	D3D11_BUFFER_DESC bufferDesc;
