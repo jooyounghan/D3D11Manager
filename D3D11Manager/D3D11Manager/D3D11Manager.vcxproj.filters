@@ -37,6 +37,12 @@
     <Filter Include="헤더 파일\Shader">
       <UniqueIdentifier>{afa11b0b-2232-46d4-b445-f57701bafcf6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\PSO">
+      <UniqueIdentifier>{14919e63-e99f-4672-ba79-815f79f19bfe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\PSO">
+      <UniqueIdentifier>{bba38b5d-a93f-4b08-aa15-d254f3e87baf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GEngine.h">
@@ -93,6 +99,24 @@
     <ClInclude Include="AppendBuffer.h">
       <Filter>헤더 파일\Buffer</Filter>
     </ClInclude>
+    <ClInclude Include="GraphicsPSOObject.h">
+      <Filter>헤더 파일\PSO</Filter>
+    </ClInclude>
+    <ClInclude Include="CoputePSOObject.h">
+      <Filter>헤더 파일\PSO</Filter>
+    </ClInclude>
+    <ClInclude Include="BlendState.h">
+      <Filter>헤더 파일\PSO</Filter>
+    </ClInclude>
+    <ClInclude Include="DepthStencilState.h">
+      <Filter>헤더 파일\PSO</Filter>
+    </ClInclude>
+    <ClInclude Include="RasterizerState.h">
+      <Filter>헤더 파일\PSO</Filter>
+    </ClInclude>
+    <ClInclude Include="SamplerState.h">
+      <Filter>헤더 파일\PSO</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -148,6 +172,24 @@
     </ClCompile>
     <ClCompile Include="AppendBuffer.cpp">
       <Filter>소스 파일\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="CoputePSOObject.cpp">
+      <Filter>소스 파일\PSO</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicsPSOObject.cpp">
+      <Filter>소스 파일\PSO</Filter>
+    </ClCompile>
+    <ClCompile Include="DepthStencilState.cpp">
+      <Filter>소스 파일\PSO</Filter>
+    </ClCompile>
+    <ClCompile Include="BlendState.cpp">
+      <Filter>소스 파일\PSO</Filter>
+    </ClCompile>
+    <ClCompile Include="RasterizerState.cpp">
+      <Filter>소스 파일\PSO</Filter>
+    </ClCompile>
+    <ClCompile Include="SamplerState.cpp">
+      <Filter>소스 파일\PSO</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

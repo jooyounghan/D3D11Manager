@@ -4,10 +4,10 @@ using namespace std;
 using namespace D3D11;
 
 CConstantBuffer::CConstantBuffer(
-	const UINT& elementSize, const UINT& arrayCount,
+	UINT elementSize, UINT arrayCount,
 	const void* cpuDataIn,
-	const D3D11_BIND_FLAG& bindFlag,
-	const D3D11_USAGE& usage
+	D3D11_BIND_FLAG bindFlag,
+	D3D11_USAGE usage
 )
 	: ABuffer(elementSize, arrayCount, cpuDataIn), m_bindFlag(bindFlag), m_usage(usage)
 {

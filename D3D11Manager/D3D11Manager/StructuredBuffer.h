@@ -14,8 +14,8 @@ namespace D3D11
 	{
 	public:
 		CStructuredBuffer(
-			const UINT& elementSize, 
-			const UINT& arrayCount, 
+			UINT elementSize, 
+			UINT arrayCount, 
 			const void* cpuData
 		);
 		~CStructuredBuffer() override = default;

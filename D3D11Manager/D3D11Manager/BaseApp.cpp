@@ -35,7 +35,7 @@ void CBaseApp::Run()
 }
 
 void CBaseApp::Init(
-	const UINT& width, const UINT& height,
+	UINT width, UINT height,
 	const wchar_t* className, const wchar_t* applicaitonName
 ) noexcept
 {

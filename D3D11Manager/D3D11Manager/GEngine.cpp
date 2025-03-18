@@ -11,16 +11,16 @@ GEngine* GEngine::GetInstance()
 	return &engine;
 }
 
-void GEngine::GEngine::InitEngine(
-    const UINT& widthIn,
-    const UINT& heightIn,
-    const UINT& refreshNumerator,
-    const UINT& refreshDenominator,
-    const DXGI_FORMAT& backBufferFormat,
-    const UINT& backBufferCount,
+void GEngine::InitEngine(
+    UINT widthIn,
+    UINT heightIn,
+    UINT refreshNumerator,
+    UINT refreshDenominator,
+    DXGI_FORMAT backBufferFormat,
+    UINT backBufferCount,
     HWND wndHandle,
-    const DXGI_SWAP_EFFECT& swapEffect,
-    const DXGI_SWAP_CHAIN_FLAG& swapChainFlag
+    DXGI_SWAP_EFFECT swapEffect,
+    DXGI_SWAP_CHAIN_FLAG swapChainFlag
 )
 {
     m_backBufferCount = backBufferCount;
@@ -68,7 +68,7 @@ void GEngine::GEngine::InitEngine(
     InitBackBuffer();
 }
 
-void GEngine::GEngine::ResizeSwapChain(const UINT& widthIn, const UINT& heightIn)
+void GEngine::ResizeSwapChain(UINT widthIn, UINT heightIn)
 {
 
     m_backBufferTexture.Reset();

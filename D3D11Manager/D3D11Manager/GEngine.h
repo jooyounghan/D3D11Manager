@@ -70,17 +70,17 @@ namespace D3D11
 
     public:
         void InitEngine(
-            const UINT& widthIn,
-            const UINT& heightIn,
-            const UINT& refreshNumerator,
-            const UINT& refreshDenominator,
-            const DXGI_FORMAT& backBufferFormat,
-            const UINT& backBufferCount,
+            UINT widthIn,
+            UINT heightIn,
+            UINT refreshNumerator,
+            UINT refreshDenominator,
+            DXGI_FORMAT backBufferFormat,
+            UINT backBufferCount,
             HWND wndHandle,
-            const DXGI_SWAP_EFFECT& swapEffect,
-            const DXGI_SWAP_CHAIN_FLAG& swapChainFlag
+            DXGI_SWAP_EFFECT swapEffect,
+            DXGI_SWAP_CHAIN_FLAG swapChainFlag
         );
-        void ResizeSwapChain(const UINT& widthIn, const UINT& heightIn);
+        void ResizeSwapChain(UINT widthIn, UINT heightIn);
 
     private:
         void InitBackBuffer();

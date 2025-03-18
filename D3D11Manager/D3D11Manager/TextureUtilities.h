@@ -15,15 +15,15 @@ namespace D3D11
 	{
 	public:
 		static void CreateTexture2D(
-			const UINT& width,
-			const UINT& height,
-			const UINT& arraySize,
-			const UINT& mipLevels,
-			const UINT& cpuAccessFlag,
-			const UINT& miscFlagIn,
-			const D3D11_USAGE& usage,
-			const DXGI_FORMAT& format,
-			const UINT& bindFlag,
+			UINT width,
+			UINT height,
+			UINT arraySize,
+			UINT mipLevels,
+			UINT cpuAccessFlag,
+			UINT miscFlagIn,
+			D3D11_USAGE usage,
+			DXGI_FORMAT format,
+			UINT bindFlag,
 			ID3D11Device* device,
 			D3D11_TEXTURE2D_DESC* texture2DDesc,
 			ID3D11Texture2D** texture2DAddress
@@ -32,7 +32,7 @@ namespace D3D11
 		static void UpdateTexture2D(
 			const std::vector<std::vector<UINT8>>& textureDataPerArray,
 			const std::vector<UINT>& textureRowPitchPerArray,
-			const UINT& mipLevels,
+			UINT mipLevels,
 			ID3D11DeviceContext* deviceContext,
 			ID3D11Texture2D* texture2D
 		) noexcept;
@@ -61,19 +61,19 @@ namespace D3D11
 			const D3D11_TEXTURE2D_DESC& texture2dDesc
 		) noexcept;
 		static DXGI_FORMAT GetShaderResourceViewFormatFromTextureFormat(
-			const DXGI_FORMAT& textureFormat
+			DXGI_FORMAT textureFormat
 		) noexcept;
 		static D3D11_DEPTH_STENCIL_VIEW_DESC GetDepthStencilViewDesc(
 			const D3D11_TEXTURE2D_DESC& texture2dDesc
 		) noexcept;
 		static DXGI_FORMAT GetDepthStencilViewFormatFromTextureFormat(
-			const DXGI_FORMAT& textureFormat
+			DXGI_FORMAT textureFormat
 		) noexcept;
 		static D3D11_UNORDERED_ACCESS_VIEW_DESC GetUnorderedAccessViewDesc(
 			const D3D11_TEXTURE2D_DESC& texture2dDesc
 		);
 		static DXGI_FORMAT GetUnorderedAccessViewFormatFromTextureFormat(
-			const DXGI_FORMAT& textureFormat
+			DXGI_FORMAT textureFormat
 		) noexcept;
 	};
 }

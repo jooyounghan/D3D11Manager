@@ -3,7 +3,7 @@
 using namespace std;
 using namespace D3D11;
 
-CAppendBuffer::CAppendBuffer(const UINT& elementSize, const UINT& arrayCount, const void* cpuData)
+CAppendBuffer::CAppendBuffer(UINT elementSize, UINT arrayCount, const void* cpuData)
 	: CStructuredBuffer(elementSize, arrayCount, cpuData)
 {
 }

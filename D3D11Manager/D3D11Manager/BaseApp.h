@@ -46,7 +46,7 @@ namespace D3D11
 		LARGE_INTEGER m_prevTime;
 
 	protected:
-		WndSizeUpdateHandler m_wndSizeUpdateHandler = [&](const UINT&, const UINT&) {};
+		WndSizeUpdateHandler m_wndSizeUpdateHandler = [&](UINT, UINT) {};
 
 	public:
 		void Run();
@@ -56,8 +56,8 @@ namespace D3D11
 
 	public:
 		virtual void Init(
-			const UINT& width,
-			const UINT& height,
+			UINT width,
+			UINT height,
 			const wchar_t* className,
 			const wchar_t* applicaitonName
 		) noexcept;

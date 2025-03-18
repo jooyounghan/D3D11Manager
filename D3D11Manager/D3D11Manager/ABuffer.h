@@ -17,7 +17,7 @@ namespace D3D11
 	class D3D11MANAGER_API ABuffer
 	{
 	public:
-		ABuffer(const UINT& elementSize, const UINT& arrayCount, const void* cpuDataIn);
+		ABuffer(UINT elementSize, UINT arrayCount, const void* cpuDataIn);
 		virtual ~ABuffer() { m_buffer.Reset(); };
 
 	protected:

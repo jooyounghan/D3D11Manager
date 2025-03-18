@@ -3,7 +3,7 @@
 using namespace std;
 using namespace D3D11;
 
-ABuffer::ABuffer(const UINT& elementSize, const UINT& arrayCount, const void* cpuData)
+ABuffer::ABuffer(UINT elementSize, UINT arrayCount, const void* cpuData)
 	: m_elementSize(elementSize), m_arrayCount(arrayCount), m_cpuData(cpuData)
 {
 	if ((elementSize * arrayCount) % 16) throw exception("The GPU buffer must be aligned to 16bytes.");

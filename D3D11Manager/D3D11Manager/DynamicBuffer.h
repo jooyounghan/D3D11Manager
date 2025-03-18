@@ -11,8 +11,8 @@ namespace D3D11
 	{
 	public:
 		CDynamicBuffer(
-			const UINT& elementSize, 
-			const UINT& arrayCount, 
+			UINT elementSize, 
+			UINT arrayCount, 
 			const void* cpuData
 		);
 		~CDynamicBuffer() override = default;

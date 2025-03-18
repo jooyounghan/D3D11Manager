@@ -11,10 +11,10 @@ namespace D3D11
 	{
 	public:
 		CConstantBuffer(
-			const UINT& elementSize, const UINT& arrayCount,
+			UINT elementSize, UINT arrayCount,
 			const void* cpuDataIn,
-			const D3D11_BIND_FLAG& bindFlag = D3D11_BIND_CONSTANT_BUFFER,
-			const D3D11_USAGE& usage = D3D11_USAGE_IMMUTABLE
+			D3D11_BIND_FLAG bindFlag = D3D11_BIND_CONSTANT_BUFFER,
+			D3D11_USAGE usage = D3D11_USAGE_IMMUTABLE
 		);
 		~CConstantBuffer() override = default;
 

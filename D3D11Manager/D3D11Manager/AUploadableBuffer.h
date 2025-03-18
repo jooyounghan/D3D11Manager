@@ -10,7 +10,7 @@ namespace D3D11
 	class D3D11MANAGER_API AUploadableBuffer : public ABuffer
 	{
 	public:
-		AUploadableBuffer(const UINT& elementSize, const UINT& arrayCount, const void* cpuData);
+		AUploadableBuffer(UINT elementSize, UINT arrayCount, const void* cpuData);
 		~AUploadableBuffer() override = default;
 
 	protected:

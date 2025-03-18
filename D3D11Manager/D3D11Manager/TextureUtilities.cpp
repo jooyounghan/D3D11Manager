@@ -7,15 +7,15 @@ using namespace std;
 using namespace D3D11;
 
 void TextureUtilities::CreateTexture2D(
-	const UINT& width, 
-	const UINT& height, 
-	const UINT& arraySize, 
-	const UINT& mipLevels, 
-	const UINT& cpuAccessFlag, 
-	const UINT& miscFlagIn, 
-	const D3D11_USAGE& usage,
-	const DXGI_FORMAT& format, 
-	const UINT& bindFlag, 
+	UINT width, 
+	UINT height, 
+	UINT arraySize, 
+	UINT mipLevels, 
+	UINT cpuAccessFlag, 
+	UINT miscFlagIn, 
+	D3D11_USAGE usage,
+	DXGI_FORMAT format, 
+	UINT bindFlag, 
 	ID3D11Device* device,
 	D3D11_TEXTURE2D_DESC* texture2DDesc, 
 	ID3D11Texture2D** texture2DAddress
@@ -41,7 +41,7 @@ void TextureUtilities::CreateTexture2D(
 void TextureUtilities::UpdateTexture2D(
 	const vector<vector<UINT8>>& textureDataPerArray, 
 	const vector<UINT>& textureRowPitchPerArray, 
-	const UINT& mipLevels,
+	UINT mipLevels,
 	ID3D11DeviceContext* deviceContext, 
 	ID3D11Texture2D* texture2D
 ) noexcept
@@ -177,7 +177,7 @@ D3D11_SHADER_RESOURCE_VIEW_DESC TextureUtilities::GetShaderResourceViewDesc(cons
 
 }
 
-DXGI_FORMAT TextureUtilities::GetShaderResourceViewFormatFromTextureFormat(const DXGI_FORMAT& textureFormat) noexcept
+DXGI_FORMAT TextureUtilities::GetShaderResourceViewFormatFromTextureFormat(DXGI_FORMAT textureFormat) noexcept
 {
 	static unordered_map<DXGI_FORMAT, DXGI_FORMAT> textureFormatToSRVFormat
 	{
@@ -230,7 +230,7 @@ D3D11_DEPTH_STENCIL_VIEW_DESC TextureUtilities::GetDepthStencilViewDesc(const D3
 	return dsvDesc;
 }
 
-DXGI_FORMAT TextureUtilities::GetDepthStencilViewFormatFromTextureFormat(const DXGI_FORMAT& textureFormat) noexcept
+DXGI_FORMAT TextureUtilities::GetDepthStencilViewFormatFromTextureFormat(DXGI_FORMAT textureFormat) noexcept
 {
 	static unordered_map<DXGI_FORMAT, DXGI_FORMAT> textureFormatToDSVFormat{
 		{ DXGI_FORMAT_R32_TYPELESS, DXGI_FORMAT_D32_FLOAT },
@@ -273,7 +273,7 @@ D3D11_UNORDERED_ACCESS_VIEW_DESC TextureUtilities::GetUnorderedAccessViewDesc(co
 	return uavDesc;
 }
 
-DXGI_FORMAT TextureUtilities::GetUnorderedAccessViewFormatFromTextureFormat(const DXGI_FORMAT& textureFormat) noexcept
+DXGI_FORMAT TextureUtilities::GetUnorderedAccessViewFormatFromTextureFormat(DXGI_FORMAT textureFormat) noexcept
 {
 	return textureFormat;
 }

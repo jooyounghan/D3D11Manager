@@ -10,8 +10,8 @@ namespace D3D11
 	{
 	public:
 		CAppendBuffer(
-			const UINT& elementSize,
-			const UINT& arrayCount,
+			UINT elementSize,
+			UINT arrayCount,
 			const void* cpuData
 		);
 		~CAppendBuffer() override = default;
