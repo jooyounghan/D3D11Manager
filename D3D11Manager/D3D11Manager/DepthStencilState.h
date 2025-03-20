@@ -40,7 +40,7 @@ namespace D3D11
     public:
         inline ID3D11DepthStencilState* GetDSS() const noexcept { return m_depthStencilState.Get(); }
 
-    private:
+    public:
         static void InitializeDefaultDepthStencilState(ID3D11Device* device);
 
     private:

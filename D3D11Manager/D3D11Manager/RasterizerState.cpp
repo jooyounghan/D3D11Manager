@@ -30,6 +30,8 @@ CRasterizerState::CRasterizerState(
 )
 {
 	D3D11_RASTERIZER_DESC rasterizerDesc;
+	ZeroMemory(&rasterizerDesc, sizeof(rasterizerDesc));
+
 	rasterizerDesc.FillMode = fillMode;
 	rasterizerDesc.CullMode = cullMode;
 	rasterizerDesc.FrontCounterClockwise = frontCounterClockwise;

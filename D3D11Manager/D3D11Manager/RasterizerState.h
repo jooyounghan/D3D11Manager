@@ -36,7 +36,7 @@ namespace D3D11
     public:
         inline ID3D11RasterizerState* GetRS() const noexcept { return m_rasterizerState.Get(); }
 
-    private:
+    public:
         static void InitializeDefaultRasterizerStates(ID3D11Device* device);
 
     private:

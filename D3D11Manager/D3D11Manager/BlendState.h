@@ -29,7 +29,7 @@ namespace D3D11
 	public:
 		inline ID3D11BlendState* GetRS() const noexcept { return m_blendState.Get(); }
 
-	private:
+	public:
 		static void InitializeDefaultBlendStates(ID3D11Device* device);
 
 	private:
