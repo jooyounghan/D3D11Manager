@@ -13,10 +13,10 @@ template class D3D11MANAGER_API Microsoft::WRL::ComPtr<ID3D11SamplerState>;
 
 namespace D3D11
 {
-	class D3D11MANAGER_API SamplerState
+	class D3D11MANAGER_API CSamplerState
 	{
 	public:
-		SamplerState(
+		CSamplerState(
 			ID3D11Device* device,
 			D3D11_FILTER filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR,
 			D3D11_TEXTURE_ADDRESS_MODE addressU = D3D11_TEXTURE_ADDRESS_CLAMP,
@@ -29,7 +29,7 @@ namespace D3D11
 			FLOAT minLOD = -FLT_MAX,
 			FLOAT maxLOD = FLT_MAX
 		);
-		~SamplerState() = default;
+		~CSamplerState() = default;
 
 	private:
 		Microsoft::WRL::ComPtr<ID3D11SamplerState> m_samplerState;
@@ -46,6 +46,11 @@ namespace D3D11
 		static Microsoft::WRL::ComPtr<ID3D11SamplerState> gSSWrapLess;
 		static Microsoft::WRL::ComPtr<ID3D11SamplerState> gSSClampLess;
 
+	public:
+		static inline ID3D11SamplerState* GetSSWrap() { return gSSWrap.Get(); }
+		static inline ID3D11SamplerState* GetSSClamp() { return gSSClamp.Get(); }
+		static inline ID3D11SamplerState* GetSSWrapLess() { return gSSWrapLess.Get(); }
+		static inline ID3D11SamplerState* GetSSClampLess() { return gSSClampLess.Get(); }
 	};
 }
 

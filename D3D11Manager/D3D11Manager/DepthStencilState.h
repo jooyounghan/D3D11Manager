@@ -47,6 +47,11 @@ namespace D3D11
         static Microsoft::WRL::ComPtr<ID3D11DepthStencilState> gDSSDraw;
         static Microsoft::WRL::ComPtr<ID3D11DepthStencilState> gDSSMasking;
         static Microsoft::WRL::ComPtr<ID3D11DepthStencilState> gDSSConditionalDraw;
+
+    public:
+        static inline ID3D11DepthStencilState* GetDSDraw() { return gDSSDraw.Get(); }
+        static inline ID3D11DepthStencilState* GetDSMasking() { return gDSSMasking.Get(); }
+        static inline ID3D11DepthStencilState* GetDSConditionalDraw() { return gDSSConditionalDraw.Get(); }
 	};
 }
 

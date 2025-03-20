@@ -63,7 +63,7 @@ namespace D3D11
 		) noexcept;
 
 	public:
-		virtual void Update(const float& deltaTime) = 0;
+		virtual void Update(float deltaTime) = 0;
 		virtual void Quit() = 0;
 		virtual void AppProcImpl(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) = 0;
 
