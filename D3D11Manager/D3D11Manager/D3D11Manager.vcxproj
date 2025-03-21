@@ -166,6 +166,7 @@
     <ClInclude Include="GeometryShader.h" />
     <ClInclude Include="GraphicsPSOObject.h" />
     <ClInclude Include="HullShader.h" />
+    <ClInclude Include="IndirectBuffer.h" />
     <ClInclude Include="PixelShader.h" />
     <ClInclude Include="RasterizerState.h" />
     <ClInclude Include="SamplerState.h" />
@@ -192,6 +193,7 @@
     <ClCompile Include="GeometryShader.cpp" />
     <ClCompile Include="GraphicsPSOObject.cpp" />
     <ClCompile Include="HullShader.cpp" />
+    <ClCompile Include="IndirectBuffer.cpp" />
     <ClCompile Include="PixelShader.cpp" />
     <ClCompile Include="RasterizerState.cpp" />
     <ClCompile Include="SamplerState.cpp" />

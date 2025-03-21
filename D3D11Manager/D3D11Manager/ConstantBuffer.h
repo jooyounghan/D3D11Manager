@@ -12,7 +12,7 @@ namespace D3D11
 	public:
 		CConstantBuffer(
 			UINT elementSize, UINT arrayCount,
-			const void* cpuDataIn,
+			const void* cpuData,
 			D3D11_BIND_FLAG bindFlag = D3D11_BIND_CONSTANT_BUFFER,
 			D3D11_USAGE usage = D3D11_USAGE_IMMUTABLE
 		);
