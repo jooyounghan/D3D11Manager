@@ -1,6 +1,6 @@
 #include "BaseApp.h"
 
-using namespace D3D11;
+using namespace App;
 
 CBaseApp* CBaseApp::MainApp = nullptr;
 

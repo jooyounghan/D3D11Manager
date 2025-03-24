@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{938a195f-84fd-4275-8a0d-0c6521c0bcda}</ProjectGuid>
-    <RootNamespace>D3D11Manager</RootNamespace>
+    <ProjectGuid>{49fb6b6b-5e5a-4758-8141-3068b4fa9419}</ProjectGuid>
+    <RootNamespace>AppManager</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -70,17 +70,11 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Label="Vcpkg">
-    <VcpkgEnabled>false</VcpkgEnabled>
-    <VcpkgManifestInstall>false</VcpkgManifestInstall>
-    <VcpkgAutoLink>false</VcpkgAutoLink>
-    <VcpkgApplocalDeps>false</VcpkgApplocalDeps>
-  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;D3D11MANAGER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;APPMANAGER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -97,7 +91,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;D3D11MANAGER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;APPMANAGER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -114,18 +108,16 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;D3D11MANAGER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;APPMANAGER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>d3d11.lib;dxgi.lib;d3dcompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -134,7 +126,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;D3D11MANAGER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;APPMANAGER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -148,56 +140,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="ABuffer.h" />
-    <ClInclude Include="AppendBuffer.h" />
-    <ClInclude Include="AShader.h" />
-    <ClInclude Include="AUploadableBuffer.h" />
-    <ClInclude Include="BlendState.h" />
-    <ClInclude Include="ComputeShader.h" />
-    <ClInclude Include="ConstantBuffer.h" />
-    <ClInclude Include="CoputePSOObject.h" />
-    <ClInclude Include="D3D11DllHelper.h" />
-    <ClInclude Include="DeferredContext.h" />
-    <ClInclude Include="DepthStencilState.h" />
-    <ClInclude Include="DomainShader.h" />
-    <ClInclude Include="DynamicBuffer.h" />
-    <ClInclude Include="GEngine.h" />
-    <ClInclude Include="GeometryShader.h" />
-    <ClInclude Include="GraphicsPSOObject.h" />
-    <ClInclude Include="HullShader.h" />
-    <ClInclude Include="IndirectBuffer.h" />
-    <ClInclude Include="PixelShader.h" />
-    <ClInclude Include="RasterizerState.h" />
-    <ClInclude Include="SamplerState.h" />
-    <ClInclude Include="StructuredBuffer.h" />
-    <ClInclude Include="TextureUtilities.h" />
-    <ClInclude Include="VertexShader.h" />
+    <ClCompile Include="AKeyHandler.cpp" />
+    <ClCompile Include="BaseApp.cpp" />
+    <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="InputManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ABuffer.cpp" />
-    <ClCompile Include="AppendBuffer.cpp" />
-    <ClCompile Include="AShader.cpp" />
-    <ClCompile Include="AUploadableBuffer.cpp" />
-    <ClCompile Include="BlendState.cpp" />
-    <ClCompile Include="ComputeShader.cpp" />
-    <ClCompile Include="ConstantBuffer.cpp" />
-    <ClCompile Include="CoputePSOObject.cpp" />
-    <ClCompile Include="DeferredContext.cpp" />
-    <ClCompile Include="DepthStencilState.cpp" />
-    <ClCompile Include="DomainShader.cpp" />
-    <ClCompile Include="DynamicBuffer.cpp" />
-    <ClCompile Include="GEngine.cpp" />
-    <ClCompile Include="dllmain.cpp" />
-    <ClCompile Include="GeometryShader.cpp" />
-    <ClCompile Include="GraphicsPSOObject.cpp" />
-    <ClCompile Include="HullShader.cpp" />
-    <ClCompile Include="IndirectBuffer.cpp" />
-    <ClCompile Include="PixelShader.cpp" />
-    <ClCompile Include="RasterizerState.cpp" />
-    <ClCompile Include="SamplerState.cpp" />
-    <ClCompile Include="StructuredBuffer.cpp" />
-    <ClCompile Include="TextureUtilities.cpp" />
-    <ClCompile Include="VertexShader.cpp" />
+    <ClInclude Include="AKeyHandler.h" />
+    <ClInclude Include="AppManagerDllHelper.h" />
+    <ClInclude Include="BaseApp.h" />
+    <ClInclude Include="InputManager.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

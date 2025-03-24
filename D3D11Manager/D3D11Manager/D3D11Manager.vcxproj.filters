@@ -48,9 +48,6 @@
     <ClInclude Include="GEngine.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="BaseApp.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="D3D11DllHelper.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -118,7 +115,7 @@
       <Filter>헤더 파일\PSO</Filter>
     </ClInclude>
     <ClInclude Include="IndirectBuffer.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>헤더 파일\Buffer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -126,9 +123,6 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="GEngine.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="BaseApp.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="DeferredContext.cpp">
@@ -195,7 +189,7 @@
       <Filter>소스 파일\PSO</Filter>
     </ClCompile>
     <ClCompile Include="IndirectBuffer.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\Buffer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

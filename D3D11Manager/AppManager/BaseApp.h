@@ -2,18 +2,18 @@
 #ifndef BASEAPP_H
 #define BASEAPE_H
 
-#include "D3D11DllHelper.h"
+#include "AppManagerDllHelper.h"
 
 #include <Windows.h>
 #include <functional>
 
-template class D3D11MANAGER_API std::function<void(const UINT& width, const UINT& height)>;
+template class APPMANAGER_API std::function<void(const UINT& width, const UINT& height)>;
 
-namespace D3D11
+namespace App
 {
 	using WndSizeUpdateHandler = std::function<void(const UINT& width, const UINT& height)>;
 
-	class D3D11MANAGER_API CBaseApp
+	class APPMANAGER_API CBaseApp
 	{
 	protected:
 		CBaseApp() noexcept;
