@@ -9,11 +9,11 @@ template class D3D11MANAGER_API Microsoft::WRL::ComPtr<ID3D11UnorderedAccessView
 
 namespace D3D11
 {
-	class D3D11MANAGER_API IndirectBuffer : public ABuffer
+	class D3D11MANAGER_API CIndirectBuffer : public ABuffer
 	{
 	public:
-		IndirectBuffer(UINT arrayCount, const D3D11_DRAW_INSTANCED_INDIRECT_ARGS* cpuData);
-		~IndirectBuffer() override = default;
+		CIndirectBuffer(UINT arrayCount, const D3D11_DRAW_INSTANCED_INDIRECT_ARGS* cpuData);
+		~CIndirectBuffer() override = default;
 
 	protected:
 		Microsoft::WRL::ComPtr<ID3D11UnorderedAccessView> m_indirectUAV;

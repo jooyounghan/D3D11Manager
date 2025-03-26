@@ -13,14 +13,14 @@ namespace D3D11
 	class D3D11MANAGER_API CVertexShader : public AShader
 	{
 	public:
-		CVertexShader(const size_t& inputLayoutCount);
+		CVertexShader(UINT inputLayoutCount);
 		~CVertexShader() override;
 
 	protected:
 		Microsoft::WRL::ComPtr<ID3D11VertexShader> m_vertexShader;
 		Microsoft::WRL::ComPtr<ID3D11InputLayout> m_inputLayout;
-		size_t m_inputLayoutCount;
-		size_t m_currentLayoutCount = 0;
+		UINT  m_inputLayoutCount;
+		UINT  m_currentLayoutCount = 0;
 		D3D11_INPUT_ELEMENT_DESC* m_inputElementDescs;
 		
 	protected:

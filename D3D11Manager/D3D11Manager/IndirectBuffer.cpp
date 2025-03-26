@@ -3,12 +3,12 @@
 using namespace std;
 using namespace D3D11;
 
-IndirectBuffer::IndirectBuffer(UINT arrayCount, const D3D11_DRAW_INSTANCED_INDIRECT_ARGS* cpuData)
+CIndirectBuffer::CIndirectBuffer(UINT arrayCount, const D3D11_DRAW_INSTANCED_INDIRECT_ARGS* cpuData)
 	: ABuffer(sizeof(D3D11_DRAW_INSTANCED_INDIRECT_ARGS), arrayCount, cpuData)
 {
 }
 
-D3D11_BUFFER_DESC IndirectBuffer::CreateBufferDesc() noexcept
+D3D11_BUFFER_DESC CIndirectBuffer::CreateBufferDesc() noexcept
 {
 	D3D11_BUFFER_DESC bufferDesc;
 	ZeroMemory(&bufferDesc, sizeof(bufferDesc));
@@ -21,7 +21,7 @@ D3D11_BUFFER_DESC IndirectBuffer::CreateBufferDesc() noexcept
 	return bufferDesc;
 }
 
-D3D11_UNORDERED_ACCESS_VIEW_DESC D3D11::IndirectBuffer::CreateUnorderedAccessViewDesc() noexcept
+D3D11_UNORDERED_ACCESS_VIEW_DESC D3D11::CIndirectBuffer::CreateUnorderedAccessViewDesc() noexcept
 {
 	D3D11_UNORDERED_ACCESS_VIEW_DESC uavDesc;
 	ZeroMemory(&uavDesc, sizeof(uavDesc));
@@ -32,7 +32,7 @@ D3D11_UNORDERED_ACCESS_VIEW_DESC D3D11::IndirectBuffer::CreateUnorderedAccessVie
 	return uavDesc;
 }
 
-void D3D11::IndirectBuffer::InitializeBuffer(ID3D11Device* const device)
+void D3D11::CIndirectBuffer::InitializeBuffer(ID3D11Device* const device)
 {
 	ABuffer::InitializeBuffer(device);
 

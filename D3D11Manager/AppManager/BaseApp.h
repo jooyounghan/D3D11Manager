@@ -49,6 +49,9 @@ namespace App
 		WndSizeUpdateHandler m_wndSizeUpdateHandler = [&](UINT, UINT) {};
 
 	public:
+		inline void SetWindowSizeUpdateHandler(WndSizeUpdateHandler handler) noexcept { m_wndSizeUpdateHandler = handler; }
+
+	public:
 		void Run();
 
 	public:
@@ -68,7 +71,7 @@ namespace App
 		virtual void AppProcImpl(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) = 0;
 
 	private:
-		void OnWindowSizeMove() noexcept;
+		void OnWindowSizeUpdate() noexcept;
 		float GetDeltaTime() noexcept;
 	};
 }

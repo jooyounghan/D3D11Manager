@@ -28,5 +28,5 @@ void D3D11::AShader::SetSamplerState(
 	const vector<ID3D11SamplerState*>& samplerStates
 ) noexcept
 {
-	m_samplerStateCount = samplerStates.size();
+	m_samplerStateCount = static_cast<UINT>(samplerStates.size());
 }

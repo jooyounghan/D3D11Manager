@@ -36,5 +36,5 @@ void CComputeShader::ResetSamplerState(ID3D11DeviceContext* deviceContext) const
 {
 	vector<ID3D11SamplerState*> resetSamplerState;
 	resetSamplerState.resize(m_samplerStateCount, nullptr);
-	deviceContext->CSSetSamplers(0, static_cast<UINT>(m_samplerStateCount), resetSamplerState.data());
+	deviceContext->CSSetSamplers(0, m_samplerStateCount, resetSamplerState.data());
 }

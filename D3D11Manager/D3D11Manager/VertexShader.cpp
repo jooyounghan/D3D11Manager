@@ -3,7 +3,7 @@
 using namespace std;
 using namespace D3D11;
 
-CVertexShader::CVertexShader(const size_t& inputLayoutCount)
+D3D11::CVertexShader::CVertexShader(UINT inputLayoutCount)
 	: m_inputLayoutCount(inputLayoutCount)
 {
 	m_inputElementDescs = new D3D11_INPUT_ELEMENT_DESC[m_inputLayoutCount];
@@ -24,7 +24,7 @@ void CVertexShader::CreateShaderImpl(ID3D11Device* device)
 	if (FAILED(hResult)) throw exception("CreateVertexShader Failed");
 
 	hResult = device->CreateInputLayout(
-		m_inputElementDescs, static_cast<UINT>(m_inputLayoutCount),
+		m_inputElementDescs, m_inputLayoutCount,
 		m_shaderByteCode->GetBufferPointer(),
 		m_shaderByteCode->GetBufferSize(),
 		m_inputLayout.GetAddressOf()
@@ -62,5 +62,5 @@ void CVertexShader::ResetSamplerState(ID3D11DeviceContext* deviceContext) const 
 {
 	vector<ID3D11SamplerState*> resetSamplerState;
 	resetSamplerState.resize(m_samplerStateCount, nullptr);
-	deviceContext->VSSetSamplers(0, static_cast<UINT>(m_samplerStateCount), resetSamplerState.data());
+	deviceContext->VSSetSamplers(0, m_samplerStateCount, resetSamplerState.data());
 }

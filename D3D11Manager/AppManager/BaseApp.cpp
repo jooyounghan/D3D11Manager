@@ -71,7 +71,7 @@ LRESULT __stdcall CBaseApp::AppProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM l
 	switch (msg)
 	{
 	case WM_EXITSIZEMOVE:
-		OnWindowSizeMove();
+		OnWindowSizeUpdate();
 		break;
 	case WM_CREATE:
 		DragAcceptFiles(hWnd, TRUE);
@@ -81,7 +81,7 @@ LRESULT __stdcall CBaseApp::AppProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM l
 	return ::DefWindowProc(hWnd, msg, wParam, lParam);
 }
 
-void CBaseApp::OnWindowSizeMove() noexcept
+void CBaseApp::OnWindowSizeUpdate() noexcept
 {
 	RECT Rect;
 	if (GetClientRect(m_mainWindow, &Rect))

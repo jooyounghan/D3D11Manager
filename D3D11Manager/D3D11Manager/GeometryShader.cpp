@@ -36,5 +36,5 @@ void CGeometryShader::ResetSamplerState(ID3D11DeviceContext* deviceContext) cons
 {
 	vector<ID3D11SamplerState*> resetSamplerState;
 	resetSamplerState.resize(m_samplerStateCount, nullptr);
-	deviceContext->GSSetSamplers(0, static_cast<UINT>(m_samplerStateCount), resetSamplerState.data());
+	deviceContext->GSSetSamplers(0, m_samplerStateCount, resetSamplerState.data());
 }

@@ -45,7 +45,7 @@ namespace D3D11
 		Microsoft::WRL::ComPtr<ID3DBlob> m_errorByteCode;
 
 	protected:
-		size_t m_samplerStateCount = 0;
+		UINT m_samplerStateCount = 0;
 
 	public:
 		virtual void SetShader(ID3D11DeviceContext* deviceContext) const noexcept = 0;
