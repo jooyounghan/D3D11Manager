@@ -39,21 +39,70 @@ void TextureUtilities::CreateTexture2D(
 }
 
 void TextureUtilities::UpdateTexture2D(
-	const vector<vector<UINT8>>& textureDataPerArray, 
-	const vector<UINT>& textureRowPitchPerArray, 
+	UINT width,
+	UINT height,
+	UINT arraySize,
+	const UINT8* textureDataPerArray,
+	const UINT* textureRowPitchPerArray,
 	UINT mipLevels,
-	ID3D11DeviceContext* deviceContext, 
+	ID3D11DeviceContext* deviceContext,
 	ID3D11Texture2D* texture2D
 ) noexcept
 {
-	for (size_t arrayIdx = 0; arrayIdx < textureDataPerArray.size(); ++arrayIdx)
+	for (size_t arrayIdx = 0; arrayIdx < arraySize; ++arrayIdx)
 	{
-		const uint8_t* imageBuffer = textureDataPerArray[arrayIdx].data();
+		const uint8_t* imageBuffer = textureDataPerArray + textureRowPitchPerArray[arrayIdx] * static_cast<size_t>(height);
 		deviceContext->UpdateSubresource(
 			texture2D, D3D11CalcSubresource(0, static_cast<UINT>(arrayIdx), mipLevels),
 			nullptr, imageBuffer, textureRowPitchPerArray[arrayIdx], NULL
 		);
 	}
+}
+
+void D3D11::TextureUtilities::CreateTexture3D(
+	UINT width, 
+	UINT height, 
+	UINT depth, 
+	UINT mipLevels, 
+	UINT cpuAccessFlag, 
+	UINT miscFlagIn, 
+	D3D11_USAGE usage, 
+	DXGI_FORMAT format, 
+	UINT bindFlag, 
+	ID3D11Device* device, 
+	D3D11_TEXTURE3D_DESC* texture3DDesc, 
+	ID3D11Texture3D** texture3DAddress
+)
+{
+	ZeroMemory(texture3DDesc, sizeof(D3D11_TEXTURE3D_DESC));
+	texture3DDesc->Width = width;
+	texture3DDesc->Height = height;
+	texture3DDesc->Depth = depth;
+	texture3DDesc->MipLevels = mipLevels;
+	texture3DDesc->BindFlags = bindFlag;
+	texture3DDesc->CPUAccessFlags = cpuAccessFlag;
+	texture3DDesc->MiscFlags = miscFlagIn;
+	texture3DDesc->Usage = usage;
+	texture3DDesc->Format = format;
+
+	HRESULT hResult = device->CreateTexture3D(texture3DDesc, NULL, texture3DAddress);
+	if (FAILED(hResult)) throw exception("CreateTexture3D Failed");
+}
+
+void TextureUtilities::UpdateTexture3D(
+	UINT width, 
+	UINT height, 
+	UINT depth, 
+	const UINT8* textureData, 
+	UINT textureRowPitch, 
+	UINT mipLevels, 
+	ID3D11DeviceContext* deviceContext, 
+	ID3D11Texture3D* texture3D
+) noexcept
+{
+	deviceContext->UpdateSubresource(
+		texture3D, 0, nullptr, textureData, textureRowPitch, depth
+	);
 }
 
 void TextureUtilities::CreateShaderResourceView(

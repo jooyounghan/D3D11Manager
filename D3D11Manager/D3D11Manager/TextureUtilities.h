@@ -7,7 +7,6 @@
 
 #include <d3d11.h>
 #include <wrl/client.h>
-#include <vector>
 
 namespace D3D11
 {
@@ -30,11 +29,40 @@ namespace D3D11
 		);
 
 		static void UpdateTexture2D(
-			const std::vector<std::vector<UINT8>>& textureDataPerArray,
-			const std::vector<UINT>& textureRowPitchPerArray,
+			UINT width,
+			UINT height,
+			UINT arraySize,
+			const UINT8* textureDataPerArray,
+			const UINT* textureRowPitchPerArray,
 			UINT mipLevels,
 			ID3D11DeviceContext* deviceContext,
 			ID3D11Texture2D* texture2D
+		) noexcept;
+
+		static void CreateTexture3D(
+			UINT width,
+			UINT height,
+			UINT depth,
+			UINT mipLevels,
+			UINT cpuAccessFlag,
+			UINT miscFlagIn,
+			D3D11_USAGE usage,
+			DXGI_FORMAT format,
+			UINT bindFlag,
+			ID3D11Device* device,
+			D3D11_TEXTURE3D_DESC* texture3DDesc,
+			ID3D11Texture3D** texture3DAddress
+		);
+
+		static void UpdateTexture3D(
+			UINT width,
+			UINT height,
+			UINT depth,
+			const UINT8* textureData,
+			UINT textureRowPitch,
+			UINT mipLevels,
+			ID3D11DeviceContext* deviceContext,
+			ID3D11Texture3D* texture3D
 		) noexcept;
 
 		static void CreateShaderResourceView(
