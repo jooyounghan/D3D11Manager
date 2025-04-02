@@ -153,6 +153,7 @@
     <ClInclude Include="AShader.h" />
     <ClInclude Include="AUploadableBuffer.h" />
     <ClInclude Include="BlendState.h" />
+    <ClInclude Include="BufferMacroUtilities.h" />
     <ClInclude Include="ComputeShader.h" />
     <ClInclude Include="ConstantBuffer.h" />
     <ClInclude Include="CoputePSOObject.h" />

@@ -17,24 +17,24 @@ void TextureUtilities::CreateTexture2D(
 	DXGI_FORMAT format, 
 	UINT bindFlag, 
 	ID3D11Device* device,
-	D3D11_TEXTURE2D_DESC* texture2DDesc, 
 	ID3D11Texture2D** texture2DAddress
 )
 {
-	ZeroMemory(texture2DDesc, sizeof(D3D11_TEXTURE2D_DESC));
-	texture2DDesc->Width = width;
-	texture2DDesc->Height = height;
-	texture2DDesc->ArraySize = arraySize;
-	texture2DDesc->MipLevels = mipLevels;
-	texture2DDesc->BindFlags = bindFlag;
-	texture2DDesc->CPUAccessFlags = cpuAccessFlag;
-	texture2DDesc->MiscFlags = miscFlagIn;
-	texture2DDesc->SampleDesc.Count = 1;
-	texture2DDesc->SampleDesc.Quality = 0;
-	texture2DDesc->Usage = usage;
-	texture2DDesc->Format = format;
+	D3D11_TEXTURE2D_DESC texture2DDesc;
+	ZeroMemory(&texture2DDesc, sizeof(D3D11_TEXTURE2D_DESC));
+	texture2DDesc.Width = width;
+	texture2DDesc.Height = height;
+	texture2DDesc.ArraySize = arraySize;
+	texture2DDesc.MipLevels = mipLevels;
+	texture2DDesc.BindFlags = bindFlag;
+	texture2DDesc.CPUAccessFlags = cpuAccessFlag;
+	texture2DDesc.MiscFlags = miscFlagIn;
+	texture2DDesc.SampleDesc.Count = 1;
+	texture2DDesc.SampleDesc.Quality = 0;
+	texture2DDesc.Usage = usage;
+	texture2DDesc.Format = format;
 
-	HRESULT hResult = device->CreateTexture2D(texture2DDesc, NULL, texture2DAddress);
+	HRESULT hResult = device->CreateTexture2D(&texture2DDesc, NULL, texture2DAddress);
 	if (FAILED(hResult)) throw exception("CreateTexture2D Failed");
 }
 
@@ -70,22 +70,22 @@ void D3D11::TextureUtilities::CreateTexture3D(
 	DXGI_FORMAT format, 
 	UINT bindFlag, 
 	ID3D11Device* device, 
-	D3D11_TEXTURE3D_DESC* texture3DDesc, 
 	ID3D11Texture3D** texture3DAddress
 )
 {
-	ZeroMemory(texture3DDesc, sizeof(D3D11_TEXTURE3D_DESC));
-	texture3DDesc->Width = width;
-	texture3DDesc->Height = height;
-	texture3DDesc->Depth = depth;
-	texture3DDesc->MipLevels = mipLevels;
-	texture3DDesc->BindFlags = bindFlag;
-	texture3DDesc->CPUAccessFlags = cpuAccessFlag;
-	texture3DDesc->MiscFlags = miscFlagIn;
-	texture3DDesc->Usage = usage;
-	texture3DDesc->Format = format;
+	D3D11_TEXTURE3D_DESC texture3DDesc;
+	ZeroMemory(&texture3DDesc, sizeof(D3D11_TEXTURE3D_DESC));
+	texture3DDesc.Width = width;
+	texture3DDesc.Height = height;
+	texture3DDesc.Depth = depth;
+	texture3DDesc.MipLevels = mipLevels;
+	texture3DDesc.BindFlags = bindFlag;
+	texture3DDesc.CPUAccessFlags = cpuAccessFlag;
+	texture3DDesc.MiscFlags = miscFlagIn;
+	texture3DDesc.Usage = usage;
+	texture3DDesc.Format = format;
 
-	HRESULT hResult = device->CreateTexture3D(texture3DDesc, NULL, texture3DAddress);
+	HRESULT hResult = device->CreateTexture3D(&texture3DDesc, NULL, texture3DAddress);
 	if (FAILED(hResult)) throw exception("CreateTexture3D Failed");
 }
 
@@ -103,6 +103,16 @@ void TextureUtilities::UpdateTexture3D(
 	deviceContext->UpdateSubresource(
 		texture3D, 0, nullptr, textureData, textureRowPitch, depth
 	);
+}
+
+void D3D11::TextureUtilities::CreateRenderTargetView(
+	ID3D11Device* device, 
+	ID3D11Resource* resource, 
+	ID3D11RenderTargetView** rtv
+)
+{
+	HRESULT hResult = device->CreateRenderTargetView(resource, nullptr, rtv);
+	if (FAILED(hResult)) throw exception("CreateRenderTargetView Failed");
 }
 
 void TextureUtilities::CreateShaderResourceView(

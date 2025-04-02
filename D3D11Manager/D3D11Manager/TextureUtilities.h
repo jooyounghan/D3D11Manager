@@ -24,7 +24,6 @@ namespace D3D11
 			DXGI_FORMAT format,
 			UINT bindFlag,
 			ID3D11Device* device,
-			D3D11_TEXTURE2D_DESC* texture2DDesc,
 			ID3D11Texture2D** texture2DAddress
 		);
 
@@ -50,7 +49,6 @@ namespace D3D11
 			DXGI_FORMAT format,
 			UINT bindFlag,
 			ID3D11Device* device,
-			D3D11_TEXTURE3D_DESC* texture3DDesc,
 			ID3D11Texture3D** texture3DAddress
 		);
 
@@ -64,6 +62,12 @@ namespace D3D11
 			ID3D11DeviceContext* deviceContext,
 			ID3D11Texture3D* texture3D
 		) noexcept;
+
+		static void CreateRenderTargetView(
+			ID3D11Device* device,
+			ID3D11Resource* resource,
+			ID3D11RenderTargetView** rtv
+		);
 
 		static void CreateShaderResourceView(
 			ID3D11Device* device,
