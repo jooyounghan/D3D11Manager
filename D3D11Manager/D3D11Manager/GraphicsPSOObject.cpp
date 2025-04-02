@@ -10,9 +10,6 @@
 #include "DepthStencilState.h"
 #include "SamplerState.h"
 
-#include <vector>
-
-using namespace std;
 using namespace D3D11;
 
 CGraphicsPSOObject::CGraphicsPSOObject(
@@ -59,4 +56,20 @@ void CGraphicsPSOObject::ApplyPSO(
 	if (m_rasterizerState) deviceContext->RSSetState(m_rasterizerState);
 	if (m_blendState) deviceContext->OMSetBlendState(m_blendState, blendFactor, blendSamplerMask);
 	if (m_depthStencilState) deviceContext->OMSetDepthStencilState(m_depthStencilState, stencilRef);
+}
+
+void CGraphicsPSOObject::RemovePSO(ID3D11DeviceContext* deviceContext)
+{
+	for (auto& shaders : m_shaders)
+	{
+		if (shaders)
+		{
+			shaders->ResetShader(deviceContext);
+			shaders->ResetSamplerState(deviceContext);
+		}
+	}
+
+	if (m_rasterizerState) deviceContext->RSSetState(nullptr);
+	if (m_blendState) deviceContext->OMSetBlendState(nullptr, nullptr, NULL);
+	if (m_depthStencilState) deviceContext->OMSetDepthStencilState(nullptr, NULL);
 }

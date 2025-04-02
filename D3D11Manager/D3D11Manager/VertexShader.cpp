@@ -42,6 +42,7 @@ void D3D11::CVertexShader::AddInputLayoutElement(const D3D11_INPUT_ELEMENT_DESC&
 
 void CVertexShader::SetShader(ID3D11DeviceContext* deviceContext) const noexcept
 {
+	deviceContext->IASetInputLayout(m_inputLayout.Get());
 	deviceContext->VSSetShader(m_vertexShader.Get(), NULL, NULL);
 }
 
