@@ -4,22 +4,13 @@
 #define GENGINE_H
 
 #include "D3D11DllHelper.h"
-
-#include <d3d11.h>
 #include <DirectXMath.h>
-#include <wrl/client.h>
 
 #if defined(DEBUG) || defined(_DEBUG)
 constexpr UINT				CreateDeviceFlags = D3D11_CREATE_DEVICE_DEBUG;
 #else
 constexpr UINT				CreateDeviceFlags = NULL;
 #endif
-
-template class D3D11MANAGER_API Microsoft::WRL::ComPtr<ID3D11Device>;
-template class D3D11MANAGER_API Microsoft::WRL::ComPtr<ID3D11DeviceContext>;
-template class D3D11MANAGER_API Microsoft::WRL::ComPtr<IDXGISwapChain>;
-template class D3D11MANAGER_API Microsoft::WRL::ComPtr<ID3D11Texture2D>;
-template class D3D11MANAGER_API Microsoft::WRL::ComPtr<ID3D11RenderTargetView>;
 
 namespace D3D11
 {

@@ -5,11 +5,7 @@
 
 #include "D3D11DllHelper.h"
 
-#include <d3d11.h>
-#include <wrl/client.h>
 #include <float.h>
-
-template class D3D11MANAGER_API Microsoft::WRL::ComPtr<ID3D11SamplerState>;
 
 namespace D3D11
 {

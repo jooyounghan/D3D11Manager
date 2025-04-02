@@ -5,8 +5,6 @@
 
 #include "AShader.h"
 
-template class D3D11MANAGER_API Microsoft::WRL::ComPtr<ID3D11ComputeShader>;
-
 namespace D3D11
 {
 	class D3D11MANAGER_API CComputeShader : public AShader
@@ -27,7 +25,8 @@ namespace D3D11
 		virtual void ResetShader(ID3D11DeviceContext* deviceContext) const noexcept override;
 		virtual void SetSamplerState(
 			ID3D11DeviceContext* deviceContext,
-			const std::vector<ID3D11SamplerState*>& samplerStates
+			ID3D11SamplerState* const* samplerStates,
+			UINT samplerStatesCount
 		)  noexcept override;
 		virtual void ResetSamplerState(ID3D11DeviceContext* deviceContext) const noexcept override;
 

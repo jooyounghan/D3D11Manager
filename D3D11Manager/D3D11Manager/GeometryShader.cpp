@@ -3,6 +3,8 @@
 using namespace std;
 using namespace D3D11;
 
+#include <vector>
+
 void CGeometryShader::CreateShaderImpl(ID3D11Device* device)
 {
 	HRESULT hResult = device->CreateGeometryShader(
@@ -25,11 +27,12 @@ void CGeometryShader::ResetShader(ID3D11DeviceContext* deviceContext) const noex
 
 void CGeometryShader::SetSamplerState(
 	ID3D11DeviceContext* deviceContext, 
-	const vector<ID3D11SamplerState*>& samplerStates
+	ID3D11SamplerState* const* samplerStates,
+	UINT samplerStatesCount
 ) noexcept
 {
-	AShader::SetSamplerState(deviceContext, samplerStates);
-	deviceContext->GSSetSamplers(0, static_cast<UINT>(samplerStates.size()), samplerStates.data());
+	AShader::SetSamplerState(deviceContext, samplerStates, samplerStatesCount);
+	deviceContext->GSSetSamplers(0, samplerStatesCount, samplerStates);
 }
 
 void CGeometryShader::ResetSamplerState(ID3D11DeviceContext* deviceContext) const noexcept

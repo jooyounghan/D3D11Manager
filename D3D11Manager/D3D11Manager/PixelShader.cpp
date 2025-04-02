@@ -1,5 +1,7 @@
 #include "PixelShader.h"
 
+#include <vector>
+
 using namespace std;
 using namespace D3D11;
 
@@ -25,11 +27,12 @@ void CPixelShader::ResetShader(ID3D11DeviceContext* deviceContext) const noexcep
 
 void CPixelShader::SetSamplerState(
 	ID3D11DeviceContext* deviceContext, 
-	const vector<ID3D11SamplerState*>& samplerStates
+	ID3D11SamplerState* const* samplerStates,
+	UINT samplerStatesCount
 ) noexcept
 {
-	AShader::SetSamplerState(deviceContext, samplerStates);
-	deviceContext->PSSetSamplers(0, static_cast<UINT>(samplerStates.size()), samplerStates.data());
+	AShader::SetSamplerState(deviceContext, samplerStates, samplerStatesCount);
+	deviceContext->PSSetSamplers(0, samplerStatesCount, samplerStates);
 }
 
 void CPixelShader::ResetSamplerState(ID3D11DeviceContext* deviceContext) const noexcept

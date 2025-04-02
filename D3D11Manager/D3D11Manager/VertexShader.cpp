@@ -1,5 +1,7 @@
 #include "VertexShader.h"
 
+#include <vector>
+
 using namespace std;
 using namespace D3D11;
 
@@ -50,12 +52,12 @@ void CVertexShader::ResetShader(ID3D11DeviceContext* deviceContext) const noexce
 
 void CVertexShader::SetSamplerState(
 	ID3D11DeviceContext* deviceContext, 
-	const vector<ID3D11SamplerState*>& samplerStates
+	ID3D11SamplerState* const* samplerStates,
+	UINT samplerStatesCount
 ) noexcept
 {
-	AShader::SetSamplerState(deviceContext, samplerStates);
-	deviceContext->VSSetSamplers(0, static_cast<UINT>(samplerStates.size()), samplerStates.data());
-
+	AShader::SetSamplerState(deviceContext, samplerStates, samplerStatesCount);
+	deviceContext->VSSetSamplers(0, samplerStatesCount, samplerStates);
 }
 
 void CVertexShader::ResetSamplerState(ID3D11DeviceContext* deviceContext) const noexcept

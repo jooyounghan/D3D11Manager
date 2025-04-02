@@ -10,8 +10,6 @@
 
 #include <exception>
 
-template class D3D11MANAGER_API Microsoft::WRL::ComPtr<ID3D11Buffer>;
-
 namespace D3D11
 {
 	class D3D11MANAGER_API ABuffer

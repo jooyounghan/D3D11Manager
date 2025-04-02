@@ -5,21 +5,16 @@
 
 #include "D3D11DllHelper.h"
 
-#include <vector>
 #include <string>
 #include <exception>
 
-#include <d3d11.h>
 #include <d3dcompiler.h>
-#include <wrl/client.h>
 
 #if defined(_DEBUG)
 constexpr UINT ShaderCompileFlag = D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION;
 #else
 constexpr UINT ShaderCompileFlag = NULL;
 #endif
-
-template class D3D11MANAGER_API Microsoft::WRL::ComPtr<ID3DBlob>;
 
 namespace D3D11
 {
@@ -52,7 +47,8 @@ namespace D3D11
 		virtual void ResetShader(ID3D11DeviceContext* deviceContext) const noexcept = 0;
 		virtual void SetSamplerState(
 			ID3D11DeviceContext* deviceContext,
-			const std::vector<ID3D11SamplerState*>& samplerStates
+			ID3D11SamplerState* const* samplerStates,
+			UINT samplerStatesCount
 		) noexcept;
 		virtual void ResetSamplerState(ID3D11DeviceContext* deviceContext) const noexcept = 0;
 	};

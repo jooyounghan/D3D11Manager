@@ -8,7 +8,6 @@
 #include <d3d11.h>
 #include <wrl/client.h>
 
-template class D3D11MANAGER_API Microsoft::WRL::ComPtr<ID3D11DepthStencilState>;
 
 namespace D3D11
 {

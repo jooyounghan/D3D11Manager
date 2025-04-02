@@ -5,9 +5,6 @@
 
 #include "AUploadableBuffer.h"
 
-template class D3D11MANAGER_API Microsoft::WRL::ComPtr<ID3D11ShaderResourceView>;
-template class D3D11MANAGER_API Microsoft::WRL::ComPtr<ID3D11UnorderedAccessView>;
-
 namespace D3D11
 {
 	class D3D11MANAGER_API CStructuredBuffer : public AUploadableBuffer

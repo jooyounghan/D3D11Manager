@@ -5,8 +5,6 @@
 
 #include "ABuffer.h" 
 
-template class D3D11MANAGER_API Microsoft::WRL::ComPtr<ID3D11UnorderedAccessView>;
-
 namespace D3D11
 {
 	class D3D11MANAGER_API CIndirectBuffer : public ABuffer

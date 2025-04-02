@@ -1,5 +1,7 @@
 #include "DomainShader.h"
 
+#include <vector>
+
 using namespace std;
 using namespace D3D11;
 
@@ -25,11 +27,12 @@ void CDomainShader::ResetShader(ID3D11DeviceContext* deviceContext) const noexce
 
 void CDomainShader::SetSamplerState(
 	ID3D11DeviceContext* deviceContext, 
-	const vector<ID3D11SamplerState*>& samplerStates
+	ID3D11SamplerState* const* samplerStates,
+	UINT samplerStatesCount
 ) noexcept
 {
-	AShader::SetSamplerState(deviceContext, samplerStates);
-	deviceContext->DSSetSamplers(0, static_cast<UINT>(samplerStates.size()), samplerStates.data());
+	AShader::SetSamplerState(deviceContext, samplerStates, samplerStatesCount);
+	deviceContext->DSSetSamplers(0, samplerStatesCount, samplerStates);
 }
 
 void CDomainShader::ResetSamplerState(ID3D11DeviceContext* deviceContext) const noexcept

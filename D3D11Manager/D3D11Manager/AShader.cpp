@@ -1,5 +1,7 @@
 #include "AShader.h"
 
+#include <vector>
+
 using namespace std;
 using namespace D3D11;
 
@@ -25,8 +27,9 @@ void AShader::CreateShader(
 
 void D3D11::AShader::SetSamplerState(
 	ID3D11DeviceContext* deviceContext, 
-	const vector<ID3D11SamplerState*>& samplerStates
+	ID3D11SamplerState* const* samplerStates,
+	UINT samplerStatesCount
 ) noexcept
 {
-	m_samplerStateCount = static_cast<UINT>(samplerStates.size());
+	m_samplerStateCount = samplerStatesCount;
 }
