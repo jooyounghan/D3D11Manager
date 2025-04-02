@@ -34,7 +34,7 @@ void CBaseApp::Run()
 	}
 }
 
-void CBaseApp::Init(
+void CBaseApp::Create(
 	UINT width, 
 	UINT height,
 	const wchar_t* className, 
