@@ -38,6 +38,7 @@ void D3D11::CVertexShader::AddInputLayoutElement(const D3D11_INPUT_ELEMENT_DESC&
 {
 	if (m_currentLayoutCount >= m_inputLayoutCount) throw exception("Can't Add D3D11_INPUT_ELEMENT_DESC Because Of The Total Count");
 	m_inputElementDescs[m_currentLayoutCount] = inputElementDesc;
+	m_currentLayoutCount++;
 }
 
 void CVertexShader::SetShader(ID3D11DeviceContext* deviceContext) const noexcept

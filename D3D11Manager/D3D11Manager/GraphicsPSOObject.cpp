@@ -70,6 +70,6 @@ void CGraphicsPSOObject::RemovePSO(ID3D11DeviceContext* deviceContext)
 	}
 
 	if (m_rasterizerState) deviceContext->RSSetState(nullptr);
-	if (m_blendState) deviceContext->OMSetBlendState(nullptr, nullptr, NULL);
+	if (m_blendState) deviceContext->OMSetBlendState(nullptr, NULL, 0xFFFFFFFF);
 	if (m_depthStencilState) deviceContext->OMSetDepthStencilState(nullptr, NULL);
 }
