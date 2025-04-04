@@ -151,7 +151,6 @@
     <ClInclude Include="ABuffer.h" />
     <ClInclude Include="AppendBuffer.h" />
     <ClInclude Include="AShader.h" />
-    <ClInclude Include="AUploadableBuffer.h" />
     <ClInclude Include="BlendState.h" />
     <ClInclude Include="BufferMacroUtilities.h" />
     <ClInclude Include="ComputeShader.h" />
@@ -178,7 +177,6 @@
     <ClCompile Include="ABuffer.cpp" />
     <ClCompile Include="AppendBuffer.cpp" />
     <ClCompile Include="AShader.cpp" />
-    <ClCompile Include="AUploadableBuffer.cpp" />
     <ClCompile Include="BlendState.cpp" />
     <ClCompile Include="ComputeShader.cpp" />
     <ClCompile Include="ConstantBuffer.cpp" />

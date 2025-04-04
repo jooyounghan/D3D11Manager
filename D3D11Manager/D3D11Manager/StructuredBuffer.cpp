@@ -4,7 +4,7 @@ using namespace std;
 using namespace D3D11;
 
 CStructuredBuffer::CStructuredBuffer(UINT elementSize, UINT arrayCount, const void* cpuData)
-	: AUploadableBuffer(elementSize, arrayCount, cpuData)
+	: ABuffer(elementSize, arrayCount, cpuData)
 {
 }
 
@@ -47,10 +47,16 @@ D3D11_UNORDERED_ACCESS_VIEW_DESC CStructuredBuffer::CreateUnorderedAccessViewDes
 
 void CStructuredBuffer::InitializeBuffer(ID3D11Device* const device)
 {
-	AUploadableBuffer::InitializeBuffer(device);
+	D3D11_SUBRESOURCE_DATA initialData = GetSubResourceData();
+	D3D11_BUFFER_DESC bufferDesc = CreateBufferDesc();
+	HRESULT hResult = m_cpuData ?
+		device->CreateBuffer(&bufferDesc, &initialData, m_buffer.GetAddressOf()) :
+		device->CreateBuffer(&bufferDesc, nullptr, m_buffer.GetAddressOf());
+	
+	if (FAILED(hResult)) throw exception("CreateBuffer With InitializeBuffer Failed");
 
 	D3D11_SHADER_RESOURCE_VIEW_DESC srvDesc = CreateShaderResourceViewDesc();
-	HRESULT hResult = device->CreateShaderResourceView(m_buffer.Get(), &srvDesc, m_structuredSRV.GetAddressOf());
+	hResult = device->CreateShaderResourceView(m_buffer.Get(), &srvDesc, m_structuredSRV.GetAddressOf());
 	if (FAILED(hResult)) throw exception("CreateShaderResourceView For InitializeBuffer Failed");
 
 	D3D11_UNORDERED_ACCESS_VIEW_DESC uavDesc = CreateUnorderedAccessViewDesc();

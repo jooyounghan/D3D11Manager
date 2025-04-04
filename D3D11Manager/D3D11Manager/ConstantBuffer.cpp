@@ -26,3 +26,19 @@ D3D11_BUFFER_DESC D3D11::CConstantBuffer::CreateBufferDesc() noexcept
 	bufferDesc.StructureByteStride = 0;
 	return bufferDesc;
 }
+
+void CConstantBuffer::InitializeBuffer(ID3D11Device* const device)
+{
+	if (m_cpuData)
+	{
+		D3D11_SUBRESOURCE_DATA initialData = GetSubResourceData();
+		D3D11_BUFFER_DESC bufferDesc = CreateBufferDesc();
+
+		HRESULT hResult = device->CreateBuffer(&bufferDesc, &initialData, m_buffer.GetAddressOf());
+		if (FAILED(hResult)) throw exception("CreateBuffer With InitializeBuffer Failed");
+	}
+	else
+	{
+		throw exception("CPU Data Link For ConstantBuffer Failed");
+	}
+}

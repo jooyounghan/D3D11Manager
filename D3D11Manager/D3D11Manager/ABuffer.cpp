@@ -17,12 +17,3 @@ D3D11_SUBRESOURCE_DATA ABuffer::GetSubResourceData() const noexcept
 	subresourceData.pSysMem = m_cpuData;
 	return subresourceData;
 }
-
-void D3D11::ABuffer::InitializeBuffer(ID3D11Device* const device)
-{
-	D3D11_SUBRESOURCE_DATA initialData = GetSubResourceData();
-	D3D11_BUFFER_DESC bufferDesc = CreateBufferDesc();
-
-	HRESULT hResult = device->CreateBuffer(&bufferDesc, &initialData, m_buffer.GetAddressOf());
-	if (FAILED(hResult)) throw exception("CreateBuffer With InitializeBuffer Failed");
-}

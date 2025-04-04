@@ -14,7 +14,6 @@ void CAppendBuffer::SwapConsumeAppend(CAppendBuffer* appendBuffer1, CAppendBuffe
 	if (appendBuffer1->m_arrayCount != appendBuffer2->m_arrayCount) throw exception("Array Counts Are Not Equal For Swapping Consume-Append Buffer");
 
 	appendBuffer1->m_buffer.Swap(appendBuffer2->m_buffer);
-	appendBuffer1->m_stagingBuffer.Swap(appendBuffer2->m_stagingBuffer);
 	appendBuffer1->m_structuredSRV.Swap(appendBuffer2->m_structuredSRV);
 	appendBuffer1->m_structuredUAV.Swap(appendBuffer2->m_structuredUAV);
 }
