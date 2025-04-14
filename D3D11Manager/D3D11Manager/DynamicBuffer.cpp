@@ -7,7 +7,7 @@ CDynamicBuffer::CDynamicBuffer(
 	UINT elementSize, 
 	UINT arrayCount, 
 	const void* cpuData, 
-	D3D11_BIND_FLAG bindFlag 
+	UINT bindFlag 
 )
 	: ABuffer(elementSize, arrayCount, cpuData), m_bindFlag(bindFlag)
 {

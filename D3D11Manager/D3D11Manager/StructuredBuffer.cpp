@@ -4,7 +4,7 @@ using namespace std;
 using namespace D3D11;
 
 CStructuredBuffer::CStructuredBuffer(UINT elementSize, UINT arrayCount, const void* cpuData)
-	: ABuffer(elementSize, arrayCount, cpuData)
+	: CDynamicBuffer(elementSize, arrayCount, cpuData, D3D11_BIND_SHADER_RESOURCE | D3D11_BIND_UNORDERED_ACCESS)
 {
 }
 
@@ -15,7 +15,7 @@ D3D11_BUFFER_DESC D3D11::CStructuredBuffer::CreateBufferDesc() noexcept
 
 	bufferDesc.ByteWidth = m_elementSize * m_arrayCount;
 	bufferDesc.Usage = D3D11_USAGE_DEFAULT;
-	bufferDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE | D3D11_BIND_UNORDERED_ACCESS;
+	bufferDesc.BindFlags = m_bindFlag;
 	bufferDesc.CPUAccessFlags = NULL;
 	bufferDesc.MiscFlags = D3D11_RESOURCE_MISC_BUFFER_STRUCTURED;
 	bufferDesc.StructureByteStride = m_elementSize;
