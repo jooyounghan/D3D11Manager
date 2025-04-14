@@ -30,41 +30,46 @@ D3D11_BUFFER_DESC CDynamicBuffer::CreateBufferDesc() noexcept
 
 void CDynamicBuffer::InitializeBuffer(ID3D11Device* const device)
 {
+	D3D11_SUBRESOURCE_DATA initialData = GetSubResourceData();
+	D3D11_BUFFER_DESC bufferDesc = CreateBufferDesc();
+	HRESULT hResult = m_cpuData ?
+		device->CreateBuffer(&bufferDesc, &initialData, m_buffer.GetAddressOf()) :
+		device->CreateBuffer(&bufferDesc, nullptr, m_buffer.GetAddressOf());
+
+	if (FAILED(hResult)) throw exception("CreateBuffer With InitializeBuffer Failed");
+
+	ZeroMemory(&bufferDesc, sizeof(bufferDesc));
+
+	bufferDesc.ByteWidth = m_elementSize * m_arrayCount;
+	bufferDesc.Usage = D3D11_USAGE_STAGING;
+	bufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE | D3D11_CPU_ACCESS_READ;
+	bufferDesc.MiscFlags = NULL;
+	bufferDesc.StructureByteStride = m_elementSize;
+
 	if (m_cpuData)
 	{
-		D3D11_SUBRESOURCE_DATA initialData = GetSubResourceData();
-		D3D11_BUFFER_DESC bufferDesc = CreateBufferDesc();
-
-		HRESULT hResult = device->CreateBuffer(&bufferDesc, &initialData, m_buffer.GetAddressOf());
-		if (FAILED(hResult)) throw exception("CreateBuffer With InitializeBuffer Failed");
-
-		ZeroMemory(&bufferDesc, sizeof(bufferDesc));
-
-		bufferDesc.ByteWidth = m_elementSize * m_arrayCount;
-		bufferDesc.Usage = D3D11_USAGE_STAGING;
-		bufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE | D3D11_CPU_ACCESS_READ;
-		bufferDesc.MiscFlags = NULL;
-		bufferDesc.StructureByteStride = m_elementSize;
-
 		hResult = device->CreateBuffer(&bufferDesc, &initialData, m_stagingBuffer.GetAddressOf());
 		if (FAILED(hResult)) throw exception("CreateBuffer For StagingBuffer Failed");
-	}
-	else
-	{
-		throw exception("CPU Data Link For DynamicBuffer Failed");
 	}
 }
 
 void CDynamicBuffer::Stage(ID3D11DeviceContext* const deviceContext)
 {
-	D3D11_MAPPED_SUBRESOURCE mappedResource;
-	ZeroMemory(&mappedResource, sizeof(mappedResource));
+	if (m_cpuData)
+	{
+		D3D11_MAPPED_SUBRESOURCE mappedResource;
+		ZeroMemory(&mappedResource, sizeof(mappedResource));
 
-	HRESULT hResult = deviceContext->Map(m_stagingBuffer.Get(), 0, D3D11_MAP_WRITE, 0, &mappedResource);
-	if (FAILED(hResult)) { throw exception("Map For Staging Buffer Failed"); }
+		HRESULT hResult = deviceContext->Map(m_stagingBuffer.Get(), 0, D3D11_MAP_WRITE, 0, &mappedResource);
+		if (FAILED(hResult)) { throw exception("Map For Staging Buffer Failed"); }
 
-	memcpy(mappedResource.pData, m_cpuData, static_cast<size_t>(m_elementSize) * m_arrayCount);
-	deviceContext->Unmap(m_stagingBuffer.Get(), 0);
+		memcpy(mappedResource.pData, m_cpuData, static_cast<size_t>(m_elementSize) * m_arrayCount);
+		deviceContext->Unmap(m_stagingBuffer.Get(), 0);
+	}
+	else
+	{
+		throw exception("CPU Data is Not Link For Staging");
+	}
 }
 
 void CDynamicBuffer::Upload(ID3D11DeviceContext* const deviceContext) noexcept

@@ -47,16 +47,10 @@ D3D11_UNORDERED_ACCESS_VIEW_DESC CStructuredBuffer::CreateUnorderedAccessViewDes
 
 void CStructuredBuffer::InitializeBuffer(ID3D11Device* const device)
 {
-	D3D11_SUBRESOURCE_DATA initialData = GetSubResourceData();
-	D3D11_BUFFER_DESC bufferDesc = CreateBufferDesc();
-	HRESULT hResult = m_cpuData ?
-		device->CreateBuffer(&bufferDesc, &initialData, m_buffer.GetAddressOf()) :
-		device->CreateBuffer(&bufferDesc, nullptr, m_buffer.GetAddressOf());
+	CDynamicBuffer::InitializeBuffer(device);
 	
-	if (FAILED(hResult)) throw exception("CreateBuffer With InitializeBuffer Failed");
-
 	D3D11_SHADER_RESOURCE_VIEW_DESC srvDesc = CreateShaderResourceViewDesc();
-	hResult = device->CreateShaderResourceView(m_buffer.Get(), &srvDesc, m_structuredSRV.GetAddressOf());
+	HRESULT hResult = device->CreateShaderResourceView(m_buffer.Get(), &srvDesc, m_structuredSRV.GetAddressOf());
 	if (FAILED(hResult)) throw exception("CreateShaderResourceView For InitializeBuffer Failed");
 
 	D3D11_UNORDERED_ACCESS_VIEW_DESC uavDesc = CreateUnorderedAccessViewDesc();
