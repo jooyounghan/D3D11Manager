@@ -5,10 +5,9 @@ using namespace std;
 using namespace D3D11;
 using namespace Microsoft::WRL;
 
-ComPtr<ID3D11BlendState> CBlendState::gBSAccumulateSS;
-ComPtr<ID3D11BlendState> CBlendState::gBSAccumulateMS;
-ComPtr<ID3D11BlendState> CBlendState::gBSAlphaBlendSS;
-ComPtr<ID3D11BlendState> CBlendState::gBSAlphaBlendMS;
+ComPtr<ID3D11BlendState> CBlendState::gBSAccumulate;
+ComPtr<ID3D11BlendState> CBlendState::gBSAccumulateWithAlpha;
+ComPtr<ID3D11BlendState> CBlendState::gBSAlphaBlend;
 
 D3D11::CBlendState::CBlendState(
 	ID3D11Device* device,
@@ -42,11 +41,11 @@ void D3D11::CBlendState::InitializeDefaultBlendStates(ID3D11Device* device)
     accumulateBlendDesc.BlendOpAlpha = D3D11_BLEND_OP_ADD;
     accumulateBlendDesc.RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
 
-    CBlendState tempBSAccumulateSS(device, false, 1, &accumulateBlendDesc);
-    CBlendState tempBSAccumulateMS(device, true, 1, &accumulateBlendDesc);
+    CBlendState tempBSAccumulate(device, false, 1, &accumulateBlendDesc);
+	CBlendState tempBSAccumulateWithAlpha(device, true, 1, &accumulateBlendDesc);
 
-    gBSAccumulateSS.Swap(tempBSAccumulateSS.m_blendState);
-    gBSAccumulateMS.Swap(tempBSAccumulateMS.m_blendState);
+	gBSAccumulate.Swap(tempBSAccumulate.m_blendState);
+	gBSAccumulateWithAlpha.Swap(tempBSAccumulateWithAlpha.m_blendState);
 
 
 	D3D11_RENDER_TARGET_BLEND_DESC alphaBlendDesc;
@@ -59,10 +58,7 @@ void D3D11::CBlendState::InitializeDefaultBlendStates(ID3D11Device* device)
 	alphaBlendDesc.BlendOpAlpha = D3D11_BLEND_OP_ADD;
 	alphaBlendDesc.RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
 
-	CBlendState tempBSAlphaSS(device, false, 1, &alphaBlendDesc);
-	CBlendState tempBSAlphaMS(device, true, 1, &alphaBlendDesc);
+	CBlendState tempBSAlphaBlend(device, true, 1, &alphaBlendDesc);
 
-	gBSAlphaBlendSS.Swap(tempBSAlphaSS.m_blendState);
-	gBSAlphaBlendMS.Swap(tempBSAlphaMS.m_blendState);
-
+	gBSAlphaBlend.Swap(tempBSAlphaBlend.m_blendState);
 }

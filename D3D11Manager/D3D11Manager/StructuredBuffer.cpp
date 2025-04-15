@@ -8,6 +8,16 @@ CStructuredBuffer::CStructuredBuffer(UINT elementSize, UINT arrayCount, const vo
 {
 }
 
+void CStructuredBuffer::Swap(CStructuredBuffer* structuredBuffer1, CStructuredBuffer* structuredBuffer2)
+{
+	if (structuredBuffer1->m_elementSize != structuredBuffer2->m_elementSize) throw exception("Element Sizes Are Not Equal For Swapping Consume-Append Buffer");
+	if (structuredBuffer1->m_arrayCount != structuredBuffer2->m_arrayCount) throw exception("Array Counts Are Not Equal For Swapping Consume-Append Buffer");
+
+	structuredBuffer1->m_buffer.Swap(structuredBuffer2->m_buffer);
+	structuredBuffer1->m_structuredSRV.Swap(structuredBuffer2->m_structuredSRV);
+	structuredBuffer1->m_structuredUAV.Swap(structuredBuffer2->m_structuredUAV);
+}
+
 D3D11_BUFFER_DESC D3D11::CStructuredBuffer::CreateBufferDesc() noexcept
 {
 	D3D11_BUFFER_DESC bufferDesc;
