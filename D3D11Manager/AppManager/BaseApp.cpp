@@ -34,12 +34,8 @@ void CBaseApp::Run()
 	}
 }
 
-void CBaseApp::Create(
-	UINT width, 
-	UINT height,
-	const wchar_t* className, 
-	const wchar_t* applicaitonName
-) noexcept
+
+void CBaseApp::Create(UINT width, UINT height, const wchar_t* className, const wchar_t* applicaitonName) noexcept
 {
 	m_width = width;
 	m_height = height;
@@ -47,20 +43,20 @@ void CBaseApp::Create(
 	ZeroMemory(&m_windowClass, sizeof(m_windowClass));
 	m_windowClass = {
 		sizeof(WNDCLASSEX), CS_CLASSDC, WndProc,
-		0L, 0L, GetModuleHandle(NULL),
-		NULL, NULL, NULL,
-		NULL, className, NULL
+		0L, 0L, GetModuleHandle(nullptr),
+		nullptr, nullptr, nullptr,
+		nullptr, className, nullptr
 	};
 	RegisterClassEx(&m_windowClass);
 
 	HWND hWindow = CreateWindow(
 		m_windowClass.lpszClassName, applicaitonName,
 		WS_OVERLAPPEDWINDOW, 0, 0,
-		m_width, m_height, NULL,
-		NULL, m_windowClass.hInstance, NULL
+		m_width, m_height, nullptr,
+		nullptr, m_windowClass.hInstance, nullptr
 	);
 	m_mainWindow = hWindow;
-	ShowWindow(m_mainWindow, SW_SHOW);
+	ShowWindow(m_mainWindow, SW_SHOWDEFAULT);
 
 	QueryPerformanceFrequency(&m_frequency);
 	QueryPerformanceCounter(&m_prevTime);
@@ -70,7 +66,7 @@ LRESULT __stdcall CBaseApp::AppProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM l
 {
 	switch (msg)
 	{
-	case WM_EXITSIZEMOVE:
+	case WM_SIZE:
 		OnWindowSizeUpdate();
 		break;
 	case WM_CREATE:
