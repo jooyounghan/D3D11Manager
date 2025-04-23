@@ -76,3 +76,77 @@ void CDynamicBuffer::Upload(ID3D11DeviceContext* const deviceContext) noexcept
 {
 	deviceContext->CopyResource(m_buffer.Get(), m_stagingBuffer.Get());
 }
+
+
+void CDynamicBuffer::StageNthElement(
+	ID3D11DeviceContext* const deviceContext,
+	UINT* elementIndices,
+	UINT elementIndicesCount
+)
+{
+	if (m_cpuData)
+	{
+		D3D11_MAPPED_SUBRESOURCE mappedResource;
+		ZeroMemory(&mappedResource, sizeof(mappedResource));
+
+		HRESULT hResult = deviceContext->Map(m_stagingBuffer.Get(), 0, D3D11_MAP_WRITE, 0, &mappedResource);
+		if (FAILED(hResult)) { throw exception("Map For Staging Buffer Failed"); }
+
+		uint8_t* mapped = reinterpret_cast<uint8_t*>(mappedResource.pData);
+		const uint8_t* source = reinterpret_cast<const uint8_t*>(m_cpuData);
+
+		for (UINT idx = 0; idx < elementIndicesCount; ++idx)
+		{
+			UINT index = elementIndices[idx];
+			if (index < m_arrayCount)
+			{
+				memcpy(
+					mapped + m_elementSize * index,
+					source + m_elementSize * index,
+					m_elementSize
+				);
+			}
+			else
+			{
+				throw exception("Element Indice Exceed Array Count");
+			}
+		}
+		deviceContext->Unmap(m_stagingBuffer.Get(), 0);
+	}
+	else
+	{
+		throw exception("CPU Data is Not Link For Staging");
+	}
+}
+
+void CDynamicBuffer::UploadNthElement(
+	ID3D11DeviceContext* const deviceContext,
+	UINT* elementIndices,
+	UINT elementIndicesCount
+)
+{
+	for (UINT idx = 0; idx < elementIndicesCount; ++idx)
+	{
+		UINT index = elementIndices[idx];
+
+		if (index < m_arrayCount)
+		{
+			D3D11_BOX box = {};
+			box.left = m_elementSize * index;
+			box.right = box.left + m_elementSize;
+			box.top = 0;
+			box.bottom = 1;
+			box.front = 0;
+			box.back = 1;
+
+			deviceContext->CopySubresourceRegion(
+				m_buffer.Get(), 0, m_elementSize * index, 0, 0,
+				m_stagingBuffer.Get(), 0, &box
+			);
+		}
+		else
+		{
+			throw exception("Element Indice Exceed Array Count");
+		}
+	}
+}

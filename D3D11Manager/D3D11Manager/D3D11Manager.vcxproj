@@ -159,6 +159,7 @@
     <ClInclude Include="D3D11DllHelper.h" />
     <ClInclude Include="DeferredContext.h" />
     <ClInclude Include="DepthStencilState.h" />
+    <ClInclude Include="DispatchIndirectStructure.h" />
     <ClInclude Include="DomainShader.h" />
     <ClInclude Include="DynamicBuffer.h" />
     <ClInclude Include="GEngine.h" />
