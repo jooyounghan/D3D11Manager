@@ -152,6 +152,8 @@
     <ClInclude Include="AppendBuffer.h" />
     <ClInclude Include="AShader.h" />
     <ClInclude Include="BlendState.h" />
+    <ClInclude Include="DSVOption.h" />
+    <ClInclude Include="ITexture.h" />
     <ClInclude Include="MacroUtilities.h" />
     <ClInclude Include="ComputeShader.h" />
     <ClInclude Include="ConstantBuffer.h" />
@@ -169,9 +171,15 @@
     <ClInclude Include="IndirectBuffer.h" />
     <ClInclude Include="PixelShader.h" />
     <ClInclude Include="RasterizerState.h" />
+    <ClInclude Include="RTVOption.h" />
     <ClInclude Include="SamplerState.h" />
+    <ClInclude Include="SRVOption.h" />
     <ClInclude Include="StructuredBuffer.h" />
+    <ClInclude Include="Texture2DInstance.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="TextureUtilities.h" />
+    <ClInclude Include="UAVOption.h" />
     <ClInclude Include="VertexShader.h" />
   </ItemGroup>
   <ItemGroup>
@@ -185,6 +193,7 @@
     <ClCompile Include="DeferredContext.cpp" />
     <ClCompile Include="DepthStencilState.cpp" />
     <ClCompile Include="DomainShader.cpp" />
+    <ClCompile Include="DSVOption.cpp" />
     <ClCompile Include="DynamicBuffer.cpp" />
     <ClCompile Include="GEngine.cpp" />
     <ClCompile Include="dllmain.cpp" />
@@ -194,9 +203,12 @@
     <ClCompile Include="IndirectBuffer.cpp" />
     <ClCompile Include="PixelShader.cpp" />
     <ClCompile Include="RasterizerState.cpp" />
+    <ClCompile Include="RTVOption.cpp" />
     <ClCompile Include="SamplerState.cpp" />
+    <ClCompile Include="SRVOption.cpp" />
     <ClCompile Include="StructuredBuffer.cpp" />
     <ClCompile Include="TextureUtilities.cpp" />
+    <ClCompile Include="UAVOption.cpp" />
     <ClCompile Include="VertexShader.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

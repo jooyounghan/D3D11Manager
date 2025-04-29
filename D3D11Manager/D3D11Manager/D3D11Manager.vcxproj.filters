@@ -43,6 +43,12 @@
     <Filter Include="헤더 파일\PSO">
       <UniqueIdentifier>{bba38b5d-a93f-4b08-aa15-d254f3e87baf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Texture\Option">
+      <UniqueIdentifier>{55c7716a-77f2-4122-8edb-ad2939d466f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Texture\Option">
+      <UniqueIdentifier>{1dc1071f-9eab-463b-91bc-14e6da3b189c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GEngine.h">
@@ -120,6 +126,24 @@
     <ClInclude Include="DispatchIndirectStructure.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="DSVOption.h">
+      <Filter>헤더 파일\Texture\Option</Filter>
+    </ClInclude>
+    <ClInclude Include="ITexture.h">
+      <Filter>헤더 파일\Texture\Option</Filter>
+    </ClInclude>
+    <ClInclude Include="RTVOption.h">
+      <Filter>헤더 파일\Texture\Option</Filter>
+    </ClInclude>
+    <ClInclude Include="SRVOption.h">
+      <Filter>헤더 파일\Texture\Option</Filter>
+    </ClInclude>
+    <ClInclude Include="UAVOption.h">
+      <Filter>헤더 파일\Texture\Option</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture2DInstance.h">
+      <Filter>헤더 파일\Texture\Option</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -190,6 +214,18 @@
     </ClCompile>
     <ClCompile Include="IndirectBuffer.cpp">
       <Filter>소스 파일\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="DSVOption.cpp">
+      <Filter>소스 파일\Texture\Option</Filter>
+    </ClCompile>
+    <ClCompile Include="RTVOption.cpp">
+      <Filter>소스 파일\Texture\Option</Filter>
+    </ClCompile>
+    <ClCompile Include="SRVOption.cpp">
+      <Filter>소스 파일\Texture\Option</Filter>
+    </ClCompile>
+    <ClCompile Include="UAVOption.cpp">
+      <Filter>소스 파일\Texture\Option</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
