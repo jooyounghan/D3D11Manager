@@ -1,4 +1,5 @@
 #include "DynamicBuffer.h"
+#include "MacroUtilities.h"
 
 using namespace std;
 using namespace D3D11;
@@ -16,7 +17,7 @@ CDynamicBuffer::CDynamicBuffer(
 D3D11_BUFFER_DESC CDynamicBuffer::CreateBufferDesc() noexcept
 {
 	D3D11_BUFFER_DESC bufferDesc;
-	ZeroMemory(&bufferDesc, sizeof(bufferDesc));
+	ZeroMem(bufferDesc);
 
 	bufferDesc.ByteWidth = m_elementSize * m_arrayCount;
 	bufferDesc.Usage = D3D11_USAGE_DEFAULT;
@@ -38,7 +39,7 @@ void CDynamicBuffer::InitializeBuffer(ID3D11Device* const device)
 
 	if (FAILED(hResult)) throw exception("CreateBuffer With InitializeBuffer Failed");
 
-	ZeroMemory(&bufferDesc, sizeof(bufferDesc));
+	ZeroMem(bufferDesc);
 
 	bufferDesc.ByteWidth = m_elementSize * m_arrayCount;
 	bufferDesc.Usage = D3D11_USAGE_STAGING;
@@ -58,7 +59,7 @@ void CDynamicBuffer::Stage(ID3D11DeviceContext* const deviceContext)
 	if (m_cpuData)
 	{
 		D3D11_MAPPED_SUBRESOURCE mappedResource;
-		ZeroMemory(&mappedResource, sizeof(mappedResource));
+		ZeroMem(mappedResource);
 
 		HRESULT hResult = deviceContext->Map(m_stagingBuffer.Get(), 0, D3D11_MAP_WRITE, 0, &mappedResource);
 		if (FAILED(hResult)) { throw exception("Map For Staging Buffer Failed"); }
@@ -87,7 +88,7 @@ void CDynamicBuffer::StageNthElement(
 	if (m_cpuData)
 	{
 		D3D11_MAPPED_SUBRESOURCE mappedResource;
-		ZeroMemory(&mappedResource, sizeof(mappedResource));
+		ZeroMem(mappedResource);
 
 		HRESULT hResult = deviceContext->Map(m_stagingBuffer.Get(), 0, D3D11_MAP_WRITE, 0, &mappedResource);
 		if (FAILED(hResult)) { throw exception("Map For Staging Buffer Failed"); }

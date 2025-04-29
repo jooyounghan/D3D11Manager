@@ -1,4 +1,5 @@
 #include "AppendBuffer.h"
+#include "MacroUtilities.h"
 
 using namespace std;
 using namespace D3D11;
@@ -11,7 +12,7 @@ CAppendBuffer::CAppendBuffer(UINT elementSize, UINT arrayCount, const void* cpuD
 D3D11_UNORDERED_ACCESS_VIEW_DESC D3D11::CAppendBuffer::CreateUnorderedAccessViewDesc() noexcept
 {
 	D3D11_UNORDERED_ACCESS_VIEW_DESC uavDesc;
-	ZeroMemory(&uavDesc, sizeof(uavDesc));
+	ZeroMem(uavDesc);
 
 	uavDesc.Format = DXGI_FORMAT_UNKNOWN;
 	uavDesc.ViewDimension = D3D11_UAV_DIMENSION_BUFFER;

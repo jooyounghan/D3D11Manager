@@ -1,4 +1,6 @@
 #include "DepthStencilState.h"
+#include "MacroUtilities.h"
+
 #include <exception>
 
 using namespace std;
@@ -27,7 +29,7 @@ CDepthStencilState::CDepthStencilState(
 )
 {
 	D3D11_DEPTH_STENCIL_DESC depthStencilDesc;
-    ZeroMemory(&depthStencilDesc, sizeof(D3D11_DEPTH_STENCIL_DESC));
+    ZeroMem(depthStencilDesc);
 	depthStencilDesc.DepthEnable = depthEnable;
 	depthStencilDesc.DepthWriteMask = depthWriteMask;
 	depthStencilDesc.DepthFunc = depthFunc;

@@ -4,8 +4,12 @@
 
 #include <iostream>
 
+using namespace std;
+using namespace App;
+using namespace D3D11;
+
 CTestApp::CTestApp()
-	: D3D11::CBaseApp()
+	: App::CBaseApp()
 {
 
 }
@@ -16,13 +20,25 @@ CTestApp* CTestApp::GetInstance() noexcept
 	return &testApp;
 }
 
-void CTestApp::Init(const UINT& width, const UINT& height, const wchar_t* className, const wchar_t* applicaitonName) noexcept
+void CTestApp::Init(
+	UINT width,
+	UINT height,
+	const wchar_t* className,
+	const wchar_t* applicaitonName
+)
 {
 	CBaseApp::Init(width, height, className, applicaitonName);
 
+	D3D11::GEngine* engine = D3D11::GEngine::GetInstance();
+	engine->InitEngine(m_width, m_height, 240, 1,
+		DXGI_FORMAT_R8G8B8A8_UNORM, 2,
+		m_mainWindow,
+		DXGI_SWAP_EFFECT_FLIP_DISCARD,
+		DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH
+	);
 }
 
-void CTestApp::Update(const float& deltaTime)
+void CTestApp::Update(float deltaTime)
 {
 	static FLOAT clearColor[4] = { 0.f, 0.f, 0.f, 1.f };
 	D3D11::GEngine* engine = D3D11::GEngine::GetInstance();
@@ -34,6 +50,7 @@ void CTestApp::Update(const float& deltaTime)
 
 	engine->GetSwapChain()->Present(1, 0);
 }
+
 
 void CTestApp::Quit()
 {

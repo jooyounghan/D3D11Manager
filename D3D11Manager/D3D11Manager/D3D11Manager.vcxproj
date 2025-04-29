@@ -42,7 +42,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -152,7 +152,7 @@
     <ClInclude Include="AppendBuffer.h" />
     <ClInclude Include="AShader.h" />
     <ClInclude Include="BlendState.h" />
-    <ClInclude Include="BufferMacroUtilities.h" />
+    <ClInclude Include="MacroUtilities.h" />
     <ClInclude Include="ComputeShader.h" />
     <ClInclude Include="ConstantBuffer.h" />
     <ClInclude Include="CoputePSOObject.h" />

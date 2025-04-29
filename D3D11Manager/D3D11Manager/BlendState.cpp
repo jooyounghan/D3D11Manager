@@ -1,4 +1,6 @@
 #include "BlendState.h"
+#include "MacroUtilities.h"
+
 #include <exception>
 
 using namespace std;
@@ -19,7 +21,7 @@ D3D11::CBlendState::CBlendState(
 	if (renderTargetBlendDescCount >= 8) { throw exception("renderTargetBlendDescCount exceeds 8"); }
 
 	D3D11_BLEND_DESC blendDesc;
-    ZeroMemory(&blendDesc, sizeof(D3D11_BLEND_DESC));
+    ZeroMem(blendDesc);
 
 	blendDesc.AlphaToCoverageEnable = alphaToCoverageEnable;
 	blendDesc.IndependentBlendEnable = static_cast<BOOL>(renderTargetBlendDescCount > 1);

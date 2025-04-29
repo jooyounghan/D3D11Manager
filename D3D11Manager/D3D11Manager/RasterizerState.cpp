@@ -1,4 +1,6 @@
 #include "RasterizerState.h"
+#include "MacroUtilities.h"
+
 #include <exception>
 
 using namespace std;
@@ -30,7 +32,7 @@ CRasterizerState::CRasterizerState(
 )
 {
 	D3D11_RASTERIZER_DESC rasterizerDesc;
-	ZeroMemory(&rasterizerDesc, sizeof(rasterizerDesc));
+	ZeroMem(rasterizerDesc);
 
 	rasterizerDesc.FillMode = fillMode;
 	rasterizerDesc.CullMode = cullMode;

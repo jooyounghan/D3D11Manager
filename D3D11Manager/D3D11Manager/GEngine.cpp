@@ -1,4 +1,5 @@
 #include "GEngine.h"
+#include "MacroUtilities.h"
 
 #include <exception>
 
@@ -28,7 +29,7 @@ void GEngine::InitEngine(
     m_swapChainFlag = swapChainFlag;
 
     DXGI_SWAP_CHAIN_DESC swapChainDesc;
-    ZeroMemory(&swapChainDesc, sizeof(swapChainDesc));
+    ZeroMem(swapChainDesc);
 
     swapChainDesc.BufferDesc.Width = widthIn;
     swapChainDesc.BufferDesc.Height = heightIn;

@@ -114,7 +114,7 @@
     <ClInclude Include="IndirectBuffer.h">
       <Filter>헤더 파일\Buffer</Filter>
     </ClInclude>
-    <ClInclude Include="BufferMacroUtilities.h">
+    <ClInclude Include="MacroUtilities.h">
       <Filter>헤더 파일\Buffer</Filter>
     </ClInclude>
     <ClInclude Include="DispatchIndirectStructure.h">

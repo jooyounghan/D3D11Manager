@@ -1,4 +1,6 @@
 #include "SamplerState.h"
+#include "MacroUtilities.h"
+
 #include <exception>
 
 using namespace std;
@@ -25,7 +27,7 @@ CSamplerState::CSamplerState(
 )
 {
 	D3D11_SAMPLER_DESC samplerDesc;
-	ZeroMemory(&samplerDesc, sizeof(samplerDesc));
+	ZeroMem(samplerDesc);
 
 	samplerDesc.Filter = filter;
 	samplerDesc.AddressU = addressU;

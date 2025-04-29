@@ -1,4 +1,5 @@
 #include "ConstantBuffer.h"
+#include "MacroUtilities.h"
 
 using namespace std;
 using namespace D3D11;
@@ -16,7 +17,7 @@ CConstantBuffer::CConstantBuffer(
 D3D11_BUFFER_DESC D3D11::CConstantBuffer::CreateBufferDesc() noexcept
 {
 	D3D11_BUFFER_DESC bufferDesc;
-	ZeroMemory(&bufferDesc, sizeof(bufferDesc));
+	ZeroMem(bufferDesc);
 
 	bufferDesc.ByteWidth = m_elementSize * m_arrayCount;
 	bufferDesc.Usage = m_usage;

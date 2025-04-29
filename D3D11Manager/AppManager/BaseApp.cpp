@@ -10,6 +10,7 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 }
 
 CBaseApp::CBaseApp() noexcept
+	: m_width(NULL), m_height(NULL)
 {
 	ZeroMemory(&m_windowClass, sizeof(WNDCLASSEX));
 	ZeroMemory(&m_frequency, sizeof(LARGE_INTEGER));
@@ -34,8 +35,26 @@ void CBaseApp::Run()
 	}
 }
 
+LRESULT __stdcall CBaseApp::AppProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+{
+	switch (msg)
+	{
+	case WM_SIZE:
+		OnWindowSizeUpdate();
+		break;
+	case WM_CREATE:
+		DragAcceptFiles(hWnd, TRUE);
+		break;
+	}
+	AppProcImpl(hWnd, msg, wParam, lParam);
+	return ::DefWindowProc(hWnd, msg, wParam, lParam);
+}
 
-void CBaseApp::Create(UINT width, UINT height, const wchar_t* className, const wchar_t* applicaitonName) noexcept
+void App::CBaseApp::Init(
+	UINT width, UINT height, 
+	const wchar_t* className, 
+	const wchar_t* applicaitonName
+)
 {
 	m_width = width;
 	m_height = height;
@@ -60,21 +79,6 @@ void CBaseApp::Create(UINT width, UINT height, const wchar_t* className, const w
 
 	QueryPerformanceFrequency(&m_frequency);
 	QueryPerformanceCounter(&m_prevTime);
-}
-
-LRESULT __stdcall CBaseApp::AppProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
-{
-	switch (msg)
-	{
-	case WM_SIZE:
-		OnWindowSizeUpdate();
-		break;
-	case WM_CREATE:
-		DragAcceptFiles(hWnd, TRUE);
-		break;
-	}
-	AppProcImpl(hWnd, msg, wParam, lParam);
-	return ::DefWindowProc(hWnd, msg, wParam, lParam);
 }
 
 void CBaseApp::OnWindowSizeUpdate() noexcept

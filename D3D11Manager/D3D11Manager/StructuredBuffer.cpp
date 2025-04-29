@@ -1,4 +1,5 @@
 #include "StructuredBuffer.h"
+#include "MacroUtilities.h"
 
 using namespace std;
 using namespace D3D11;
@@ -21,7 +22,7 @@ void CStructuredBuffer::Swap(CStructuredBuffer* structuredBuffer1, CStructuredBu
 D3D11_BUFFER_DESC D3D11::CStructuredBuffer::CreateBufferDesc() noexcept
 {
 	D3D11_BUFFER_DESC bufferDesc;
-	ZeroMemory(&bufferDesc, sizeof(bufferDesc));
+	ZeroMem(bufferDesc);
 
 	bufferDesc.ByteWidth = m_elementSize * m_arrayCount;
 	bufferDesc.Usage = D3D11_USAGE_DEFAULT;
@@ -36,7 +37,7 @@ D3D11_BUFFER_DESC D3D11::CStructuredBuffer::CreateBufferDesc() noexcept
 D3D11_SHADER_RESOURCE_VIEW_DESC CStructuredBuffer::CreateShaderResourceViewDesc() noexcept
 {
 	D3D11_SHADER_RESOURCE_VIEW_DESC srvDesc;
-	ZeroMemory(&srvDesc, sizeof(srvDesc));
+	ZeroMem(srvDesc);
 
 	srvDesc.Format = DXGI_FORMAT_UNKNOWN;
 	srvDesc.ViewDimension = D3D11_SRV_DIMENSION_BUFFER;
@@ -47,7 +48,7 @@ D3D11_SHADER_RESOURCE_VIEW_DESC CStructuredBuffer::CreateShaderResourceViewDesc(
 D3D11_UNORDERED_ACCESS_VIEW_DESC CStructuredBuffer::CreateUnorderedAccessViewDesc() noexcept
 {
 	D3D11_UNORDERED_ACCESS_VIEW_DESC uavDesc;
-	ZeroMemory(&uavDesc, sizeof(uavDesc));
+	ZeroMem(uavDesc);
 
 	uavDesc.Format = DXGI_FORMAT_UNKNOWN;
 	uavDesc.ViewDimension = D3D11_UAV_DIMENSION_BUFFER;

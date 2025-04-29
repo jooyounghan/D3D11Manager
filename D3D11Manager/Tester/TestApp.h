@@ -1,7 +1,7 @@
 #pragma once
 #include "BaseApp.h"
 
-class CTestApp : public D3D11::CBaseApp
+class CTestApp : public App::CBaseApp
 {
 private:
 	CTestApp();
@@ -20,8 +20,8 @@ public:
 		UINT height,
 		const wchar_t* className,
 		const wchar_t* applicaitonName
-	) noexcept override;
-	virtual void Update(const float& deltaTime) override;
+	) override;
+	virtual void Update(float deltaTime) override;
 	virtual void Quit() override;
 	virtual void AppProcImpl(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) override;
 
