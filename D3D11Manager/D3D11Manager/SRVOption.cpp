@@ -4,6 +4,7 @@
 #include <unordered_map>
 
 using namespace std;
+using namespace D3D11;
 
 void SRVOption::InitializeByOption(
     ID3D11Device* device,
@@ -27,6 +28,11 @@ void SRVOption::InitializeByOption(
         }        
         texture2D->Release();
     }
+}
+
+void SRVOption::Swap(SRVOption& srvOptionIn)
+{
+    m_srv.Swap(srvOptionIn.m_srv);
 }
 
 D3D11_SHADER_RESOURCE_VIEW_DESC SRVOption::GetShaderResourceViewDesc(const D3D11_TEXTURE2D_DESC& texture2dDesc)

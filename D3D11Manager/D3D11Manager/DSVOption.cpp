@@ -4,6 +4,7 @@
 #include <unordered_map>
 
 using namespace std;
+using namespace D3D11;
 
 void DSVOption::InitializeByOption(
     ID3D11Device* device,
@@ -23,6 +24,11 @@ void DSVOption::InitializeByOption(
 
         texture2D->Release();
     }
+}
+
+void DSVOption::Swap(DSVOption& dsvOptionIn)
+{
+    m_dsv.Swap(dsvOptionIn.m_dsv);
 }
 
 D3D11_DEPTH_STENCIL_VIEW_DESC DSVOption::GetDepthStencilViewDesc(const D3D11_TEXTURE2D_DESC& texture2dDesc)

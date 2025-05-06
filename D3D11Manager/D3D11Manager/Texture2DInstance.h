@@ -1,9 +1,10 @@
 #pragma once
 #include "ITexture.h"
 #include "MacroUtilities.h"
+#include <exception>
 
-template<typename ...IsTextureOption>
-class Texture2DInstance : public ITexture2D, public IsTextureOption...
+template<IsTextureOption ...TextureOption>
+class Texture2DInstance : public ITexture2D, public TextureOption...
 {
 public:
 	Texture2DInstance(
@@ -24,7 +25,7 @@ public:
 public:
 	static D3D11_BIND_FLAG GetBindFlags()
 	{
-		return (D3D11_BIND_FLAG)(IsTextureOption::GetBindFlag() | ...);
+		return (D3D11_BIND_FLAG)(TextureOption::GetBindFlag() | ...);
 	};
 
 protected:
@@ -36,7 +37,7 @@ protected:
 
 public:
 	virtual ID3D11Texture2D* const GetTexture2D() const { return m_texture2D.Get(); }
-	virtual D3D11_TEXTURE2D_DESC* const GetTexture2DDesc() const { &m_texture2DDesc; }
+	virtual D3D11_TEXTURE2D_DESC* const GetTexture2DDesc() { return &m_texture2DDesc; }
 
 public:
 	virtual void InitializeByOption(
@@ -44,10 +45,13 @@ public:
 		ID3D11DeviceContext* deviceContext,
 		ID3D11Resource* resource = nullptr 
 	) override;
+
+public:
+	void Swap(Texture2DInstance& texture2DInstanceIn);
 };
 
-template<typename ...IsTextureOption>
-inline Texture2DInstance<IsTextureOption...>::Texture2DInstance(
+template<IsTextureOption ...TextureOption>
+inline Texture2DInstance<TextureOption...>::Texture2DInstance(
 	UINT width, UINT height, UINT arraySize,
 	UINT mipLevels, UINT cpuAccessFlag, UINT miscFlagIn,
 	D3D11_USAGE usage, DXGI_FORMAT format,
@@ -60,7 +64,7 @@ inline Texture2DInstance<IsTextureOption...>::Texture2DInstance(
 	m_texture2DDesc.Height = height;
 	m_texture2DDesc.ArraySize = arraySize;
 	m_texture2DDesc.MipLevels = mipLevels;
-	m_texture2DDesc.BindFlags = Texture2DInstance<IsTextureOption...>::GetBindFlags();
+	m_texture2DDesc.BindFlags = Texture2DInstance<TextureOption...>::GetBindFlags();
 	m_texture2DDesc.CPUAccessFlags = cpuAccessFlag;
 	m_texture2DDesc.MiscFlags = miscFlagIn;
 	m_texture2DDesc.SampleDesc.Count = 1;
@@ -71,8 +75,8 @@ inline Texture2DInstance<IsTextureOption...>::Texture2DInstance(
 	ZeroMem(m_subresourceData);
 }
 
-template<typename ...IsTextureOption>
-inline Texture2DInstance<IsTextureOption...>::Texture2DInstance(
+template<IsTextureOption ...TextureOption>
+inline Texture2DInstance<TextureOption...>::Texture2DInstance(
 	UINT width, UINT height, UINT arraySize,
 	UINT mipLevels, UINT cpuAccessFlag, UINT miscFlagIn,
 	D3D11_USAGE usage, DXGI_FORMAT format,
@@ -87,7 +91,7 @@ inline Texture2DInstance<IsTextureOption...>::Texture2DInstance(
 	m_texture2DDesc.Height = height;
 	m_texture2DDesc.ArraySize = arraySize;
 	m_texture2DDesc.MipLevels = mipLevels;
-	m_texture2DDesc.BindFlags = Texture2DInstance<IsTextureOption...>::GetBindFlags();
+	m_texture2DDesc.BindFlags = Texture2DInstance<TextureOption...>::GetBindFlags();
 	m_texture2DDesc.CPUAccessFlags = cpuAccessFlag;
 	m_texture2DDesc.MiscFlags = miscFlagIn;
 	m_texture2DDesc.SampleDesc.Count = 1;
@@ -100,8 +104,8 @@ inline Texture2DInstance<IsTextureOption...>::Texture2DInstance(
 	m_subresourceData.SysMemPitch = width * m_bitLevel * m_channelCount;
 }
 
-template<typename ...IsTextureOption>
-inline void Texture2DInstance<IsTextureOption...>::InitializeByOption(
+template<IsTextureOption ...TextureOption>
+inline void Texture2DInstance<TextureOption...>::InitializeByOption(
 	ID3D11Device* device,
 	ID3D11DeviceContext* deviceContext,
 	ID3D11Resource* resource
@@ -109,10 +113,16 @@ inline void Texture2DInstance<IsTextureOption...>::InitializeByOption(
 {
 	HRESULT hResult = device->CreateTexture2D(
 		&m_texture2DDesc, 
-		m_subresourceData.pSysMem ? NULL : &m_subresourceData, 
+		m_subresourceData.pSysMem ? &m_subresourceData : nullptr, 
 		m_texture2D.GetAddressOf()
 	);
 	if (FAILED(hResult)) { throw std::exception("CreateTexture2D Failed"); }
-	(IsTextureOption::InitializeByOption(device, deviceContext, m_texture2D.Get()), ...);
+	(TextureOption::InitializeByOption(device, deviceContext, m_texture2D.Get()), ...);
+}
+
+template<IsTextureOption ...TextureOption>
+inline void Texture2DInstance<TextureOption...>::Swap(Texture2DInstance& texture2DInstanceIn)
+{
+	(..., TextureOption::Swap(static_cast<TextureOption&>(*this), static_cast<TextureOption&>(texture2DInstanceIn)));
 }
 

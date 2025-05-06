@@ -7,6 +7,7 @@ using namespace std;
 using namespace D3D11;
 using namespace Microsoft::WRL;
 
+ComPtr<ID3D11DepthStencilState> CDepthStencilState::gDSSDisabled;
 ComPtr<ID3D11DepthStencilState> CDepthStencilState::gDSSDraw;
 ComPtr<ID3D11DepthStencilState> CDepthStencilState::gDSSMasking;
 ComPtr<ID3D11DepthStencilState> CDepthStencilState::gDSSConditionalDraw;
@@ -51,7 +52,7 @@ CDepthStencilState::CDepthStencilState(
 
 void CDepthStencilState::InitializeDefaultDepthStencilState(ID3D11Device* device)
 {
-    
+	CDepthStencilState tempDSSDisabled(device, false);
     CDepthStencilState tempDSSDraw(device, true, D3D11_DEPTH_WRITE_MASK_ALL, D3D11_COMPARISON_LESS, false);
 	CDepthStencilState tempDSSMasking(device, true, D3D11_DEPTH_WRITE_MASK_ZERO, D3D11_COMPARISON_LESS, true, 0xFF, 0xFF,
 		D3D11_STENCIL_OP_KEEP, D3D11_STENCIL_OP_KEEP, D3D11_STENCIL_OP_REPLACE, D3D11_COMPARISON_ALWAYS,
@@ -62,6 +63,7 @@ void CDepthStencilState::InitializeDefaultDepthStencilState(ID3D11Device* device
 		D3D11_STENCIL_OP_KEEP, D3D11_STENCIL_OP_KEEP, D3D11_STENCIL_OP_KEEP, D3D11_COMPARISON_ALWAYS
 	);
 
+	gDSSDisabled.Swap(tempDSSDisabled.m_depthStencilState);
 	gDSSDraw.Swap(tempDSSDraw.m_depthStencilState);
 	gDSSMasking.Swap(tempDSSMasking.m_depthStencilState);
 	gDSSConditionalDraw.Swap(tempDSSConditionalDraw.m_depthStencilState);

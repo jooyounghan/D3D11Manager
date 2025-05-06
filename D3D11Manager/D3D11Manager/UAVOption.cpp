@@ -1,5 +1,6 @@
-
 #include "UAVOption.h"
+
+using namespace D3D11;
 
 void UAVOption::InitializeByOption(
 	ID3D11Device* device, 
@@ -8,4 +9,9 @@ void UAVOption::InitializeByOption(
 )
 {
 	device->CreateUnorderedAccessView(resource, NULL, &m_uav);
+}
+
+void UAVOption::Swap(UAVOption& uavOptionIn)
+{
+	m_uav.Swap(uavOptionIn.m_uav);
 }
