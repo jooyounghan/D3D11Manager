@@ -40,7 +40,7 @@ void D3D11::CBlendState::InitializeDefaultBlendStates(ID3D11Device* device)
 {
     D3D11_RENDER_TARGET_BLEND_DESC additivieBlendDesc;
     additivieBlendDesc.BlendEnable = true;
-    additivieBlendDesc.SrcBlend = D3D11_BLEND_SRC_ALPHA;
+    additivieBlendDesc.SrcBlend = D3D11_BLEND_ONE;
     additivieBlendDesc.DestBlend = D3D11_BLEND_ONE;
     additivieBlendDesc.BlendOp = D3D11_BLEND_OP_ADD;
     additivieBlendDesc.SrcBlendAlpha = D3D11_BLEND_ONE;

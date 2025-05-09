@@ -33,9 +33,7 @@ void CDynamicBuffer::InitializeBuffer(ID3D11Device* const device)
 {
 	D3D11_SUBRESOURCE_DATA initialData = GetSubResourceData();
 	D3D11_BUFFER_DESC bufferDesc = CreateBufferDesc();
-	HRESULT hResult = m_cpuData ?
-		device->CreateBuffer(&bufferDesc, &initialData, m_buffer.GetAddressOf()) :
-		device->CreateBuffer(&bufferDesc, nullptr, m_buffer.GetAddressOf());
+	HRESULT hResult = device->CreateBuffer(&bufferDesc, m_cpuData ? &initialData : nullptr, m_buffer.GetAddressOf());
 
 	if (FAILED(hResult)) throw exception("CreateBuffer With InitializeBuffer Failed");
 
