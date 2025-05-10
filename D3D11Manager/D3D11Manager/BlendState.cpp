@@ -9,6 +9,8 @@ using namespace Microsoft::WRL;
 
 ComPtr<ID3D11BlendState> CBlendState::gBSAdditiveSS;
 ComPtr<ID3D11BlendState> CBlendState::gBSAdditiveMS;
+ComPtr<ID3D11BlendState> CBlendState::gBSAlphaWeightedAdditiveSS;
+ComPtr<ID3D11BlendState> CBlendState::gBSAlphaWeightedAdditiveMS;
 ComPtr<ID3D11BlendState> CBlendState::gBSAlphaSS;
 ComPtr<ID3D11BlendState> CBlendState::gBSAlphaMS;
 ComPtr<ID3D11BlendState> CBlendState::gBSPreMultipliedAlphaSS;
@@ -53,6 +55,22 @@ void D3D11::CBlendState::InitializeDefaultBlendStates(ID3D11Device* device)
 
 	gBSAdditiveSS.Swap(tempBSAdditiveSS.m_blendState);
 	gBSAdditiveMS.Swap(tempBSAdditiveMS.m_blendState);
+
+	D3D11_RENDER_TARGET_BLEND_DESC alphaWeightedAdditivieBlendDesc;
+	alphaWeightedAdditivieBlendDesc.BlendEnable = true;
+	alphaWeightedAdditivieBlendDesc.SrcBlend = D3D11_BLEND_SRC_ALPHA;
+	alphaWeightedAdditivieBlendDesc.DestBlend = D3D11_BLEND_ONE;
+	alphaWeightedAdditivieBlendDesc.BlendOp = D3D11_BLEND_OP_ADD;
+	alphaWeightedAdditivieBlendDesc.SrcBlendAlpha = D3D11_BLEND_ONE;
+	alphaWeightedAdditivieBlendDesc.DestBlendAlpha = D3D11_BLEND_ONE;
+	alphaWeightedAdditivieBlendDesc.BlendOpAlpha = D3D11_BLEND_OP_ADD;
+	alphaWeightedAdditivieBlendDesc.RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+
+	CBlendState tempBSAlphaWeightedAdditiveSS(device, false, 1, &alphaWeightedAdditivieBlendDesc);
+	CBlendState tempBSAlphaWeightedAdditiveMS(device, true, 1, &alphaWeightedAdditivieBlendDesc);
+
+	gBSAlphaWeightedAdditiveSS.Swap(tempBSAlphaWeightedAdditiveSS.m_blendState);
+	gBSAlphaWeightedAdditiveMS.Swap(tempBSAlphaWeightedAdditiveMS.m_blendState);
 
 	D3D11_RENDER_TARGET_BLEND_DESC alphaBlendDesc;
 	alphaBlendDesc.BlendEnable = true;
